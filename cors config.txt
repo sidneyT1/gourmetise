@@ -1,0 +1,12 @@
+install cors : composer require nelmio/cors-bundle
+
+config/packages/nelmio_cors.yaml (coté api), créer si existe pas
+
+nelmio_cors:
+  defaults:
+    allow_origin: ['http://example.com']  # Replace with your allowed origin (garde '%env(CORS_ALLOW_ORIGIN)%' pour que l'api s'appel)
+    allow_methods: ['GET', 'POST', 'PUT', 'DELETE']
+    allow_headers: ['Content-Type', 'Authorization']
+    max_age: 3600
+  paths:
+    '^/api/': ~  # Allow CORS for all routes under /api/
