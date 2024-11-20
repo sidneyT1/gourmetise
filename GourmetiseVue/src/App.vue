@@ -2,6 +2,7 @@
 import {RouterView} from 'vue-router'
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
+import ContestParams from './components/ContestParams.vue';
 
 </script>
 
@@ -12,9 +13,13 @@ import Footer from "@/components/Footer.vue";
 
       <!-- Contenu de la page selon la route active -->
       <v-main class="flex-grow-1">
+
+        <ContestParams />
+        
         <router-view/>
+        
       </v-main>
-     
+      
       <Footer/>
     </v-container>
   </v-app>
