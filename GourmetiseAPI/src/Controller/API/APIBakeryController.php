@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use DateTime;
 
-class APIUserController extends AbstractController
+class APIBakeryController extends AbstractController
 {
 
     #[Route('/api/bakery', methods :["POST"])]
