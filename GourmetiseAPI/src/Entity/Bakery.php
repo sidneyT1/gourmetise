@@ -46,6 +46,8 @@ class Bakery
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false, unique: true)]
     private ?User $user = null;
 
+    
+
  
 
     public function getSiren(): ?string
