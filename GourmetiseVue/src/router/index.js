@@ -1,5 +1,8 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Index from "@/views/index.vue";
+import ContestParams from '@/components/ContestParams.vue';
+import Formulaire from '@/components/Formulaire.vue';
+
 
 
 const router = createRouter({
@@ -10,6 +13,17 @@ const router = createRouter({
             name: 'home',
             component: Index,
         },
+        {
+            path: '/ContestParams',
+            name: 'ContestParams',
+            component: ContestParams,
+        },
+        {
+            path: '/Formulaire',
+            name: 'Formulaire',
+            component: Formulaire,
+        },
+      
             
         
     ],
