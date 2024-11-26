@@ -59,14 +59,16 @@
   
         <v-checkbox
           v-model="checkbox" 
+          
           :error-messages="checkbox.errorMessage"
           label="En soumettant ce formulaire, J’ai lu et accepté les conditions d’utilisation relatives à la collecte de mes données."
           type="checkbox"
-          value="1"
           required
+          
+          
         ></v-checkbox>
 
-        <v-btn @click="handleReset">
+        <v-btn @click="Reinitialiser">
           Annuler
         </v-btn>
 
@@ -91,6 +93,7 @@
     const contactName = ref('');
     const description = ref('');
     const checkbox = ref(false);
+
 
     const userEmail = 'manager@gmail.com';
   
@@ -121,7 +124,7 @@
     };
   
 
-    const handleReset = () => {
+    const Reinitialiser = () => {
       name.value = '';
       street.value = '';
       postalCode.value = '';
