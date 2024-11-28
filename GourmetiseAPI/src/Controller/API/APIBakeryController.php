@@ -56,7 +56,7 @@ class APIBakeryController extends AbstractController
             if ($existingSiren) {
                 return new JsonResponse(['error' => 'Le SIREN existe déjà.'], Response::HTTP_BAD_REQUEST);
             }
-
+            
             $user = $bakery->getUser();
             if (!$user || !$user->getMail()) {
                 return new JsonResponse(['error' => 'Veuillez fournir un email utilisateur valide.'], Response::HTTP_BAD_REQUEST);
@@ -73,9 +73,10 @@ class APIBakeryController extends AbstractController
 
             $contestParams = $entityManager->getRepository(ContestParams::class)->find(1);
             $now = new DateTime();
-            //  if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
-            //    return new JsonResponse(['error' => 'La période d\'inscription est terminée.'], Response::HTTP_FORBIDDEN);
-            //}
+            
+              if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
+                return new JsonResponse(['error' => 'Vous êtes hors période d\'inscription'], Response::HTTP_FORBIDDEN);
+            }
 
             $bakery->setUser($existingUser);
 
