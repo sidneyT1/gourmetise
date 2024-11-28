@@ -2,6 +2,7 @@
 import {RouterView} from 'vue-router'
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
+import ContestParams from './components/ContestParams.vue';
 
 
 </script>
@@ -17,7 +18,7 @@ import Footer from "@/components/Footer.vue";
         <router-view/>
        
       </v-main>
-     
+      
       <Footer/>
     </v-container>
   </v-app>

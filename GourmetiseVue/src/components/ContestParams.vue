@@ -10,6 +10,8 @@
           <strong>Début évaluation :</strong> {{ formatDate(params.startEvaluation) }}<br />
           <strong>Fin des évaluations :</strong> {{ formatDate(params.endEvaluation) }}<br />
         </p>
+         
+        
       </v-col>
     </v-row>
   </v-container>
