@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGourmetiseConcours"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -19,10 +20,16 @@
             android:theme="@style/Theme.AppGourmetiseConcours">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".BakeryListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppGourmetiseConcours">
+        </activity>
+
     </application>
 
 </manifest>

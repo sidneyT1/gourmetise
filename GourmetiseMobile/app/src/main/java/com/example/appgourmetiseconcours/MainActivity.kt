@@ -1,11 +1,11 @@
 package com.example.appgourmetiseconcours
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,18 +18,31 @@ import androidx.compose.ui.unit.sp
 import com.example.appgourmetiseconcours.ui.theme.AppGourmetiseConcoursTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var dbHelper: BakeryHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        dbHelper = BakeryHelper(this)
+        dbHelper.writableDatabase
+
         setContent {
             AppGourmetiseConcoursTheme {
-                Accueil()
+                Accueil(
+                    onSeeParticipantsClicked = {
+                        startActivity(
+                            Intent(this, BakeryListActivity::class.java)
+                        )
+                    }
+                )
             }
         }
     }
 }
 
 @Composable
-fun Accueil() {
+fun Accueil(onSeeParticipantsClicked: () -> Unit) {
     Scaffold(
         topBar = {
 
@@ -43,14 +56,11 @@ fun Accueil() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Image(
                     painter = painterResource(id = R.drawable.logogourmetise),
                     contentDescription = "Logo du Concours",
-                    modifier = Modifier
-                        .size(150.dp)
+                    modifier = Modifier.size(150.dp)
                 )
-
 
                 Text(
                     text = "Votez au grand concours pour élire la meilleure boulangerie de votre région !",
@@ -68,14 +78,12 @@ fun Accueil() {
                     modifier = Modifier.padding(16.dp)
                 )
 
-
-
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Button(
-                        onClick = {},
+                        onClick = { onSeeParticipantsClicked() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp),
@@ -83,11 +91,8 @@ fun Accueil() {
                     ) {
                         Text("Voir les participants")
                     }
-
-
                 }
             }
         }
     )
 }
-

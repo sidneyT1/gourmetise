@@ -14,8 +14,23 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use DateTime;
 
+
+
 class APIBakeryController extends AbstractController
 {
+    #[Route('/api/bakery', methods: ["GET"])]
+    public function getBakeries(EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse {
+        try {
+            $bakeries = $entityManager->getRepository(Bakery::class)->findAll();
+            $data = $serializer->serialize($bakeries, 'json');
+
+            return new JsonResponse($data, Response::HTTP_OK, [], true);
+        } catch (\Exception $e) {
+            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     #[Route('/api/bakery', methods: ["POST"])]
     public function createBakery(
         Request $request,
@@ -56,7 +71,7 @@ class APIBakeryController extends AbstractController
             if ($existingSiren) {
                 return new JsonResponse(['error' => 'Le SIREN existe déjà.'], Response::HTTP_BAD_REQUEST);
             }
-            
+
             $user = $bakery->getUser();
             if (!$user || !$user->getMail()) {
                 return new JsonResponse(['error' => 'Veuillez fournir un email utilisateur valide.'], Response::HTTP_BAD_REQUEST);
@@ -72,16 +87,16 @@ class APIBakeryController extends AbstractController
             }
 
             $contestParams = $entityManager->getRepository(ContestParams::class)->find(1);
-            $now = new DateTime();
-            
-              if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
+            $now = new \DateTime();
+
+            if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
                 return new JsonResponse(['error' => 'Vous êtes hors période d\'inscription'], Response::HTTP_FORBIDDEN);
             }
 
             $bakery->setUser($existingUser);
 
             if (!$bakery->getConditionsDate()) {
-                $bakery->setConditionsDate(new DateTime());
+                $bakery->setConditionsDate(new \DateTime());
             }
 
             $entityManager->persist($bakery);
@@ -93,3 +108,6 @@ class APIBakeryController extends AbstractController
         }
     }
 }
+
+
+
