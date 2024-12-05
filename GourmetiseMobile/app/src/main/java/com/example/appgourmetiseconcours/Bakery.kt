@@ -8,5 +8,5 @@ data class Bakery(
     val city: String,
     val phonenumber: String,
     val contactname: String,
-    val description: String?
+    val description: String
 )

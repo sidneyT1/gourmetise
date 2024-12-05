@@ -19,6 +19,15 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.example.appgourmetiseconcours.ui.theme.PurpleGrey40
 
 class BakeryListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +37,8 @@ class BakeryListActivity : ComponentActivity() {
             AppGourmetiseConcoursTheme {
                 val context = LocalContext.current
                 val bdd = BakeryDAO(context)
+                var lesBakeries = bdd.getAllBakeries()
+
                 Scaffold(
                     topBar = {
                         TopAppBar(
@@ -49,6 +60,9 @@ class BakeryListActivity : ComponentActivity() {
                                     fontSize = 20.sp
                                 )
                             )
+                            lesBakeries.forEach { bakery ->
+                                BakeryRow(bakery)
+                            }
                         }
                     },
                     bottomBar = {
@@ -111,10 +125,13 @@ class BakeryListActivity : ComponentActivity() {
                                     })
                                 },
                                 modifier = Modifier
-                                    .padding(12.dp)
-                                    .width(120.dp)
+                                    .padding(8.dp)
+                                    .fillMaxWidth(),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFF7043))
+
                             ) {
                                 Text("IMPORTER")
+
                             }
                         }
                     }
@@ -123,3 +140,65 @@ class BakeryListActivity : ComponentActivity() {
         }
     }
 }
+
+@Composable
+fun BakeryRow(bakery : Bakery) {
+    Card(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+    ){
+        Column(
+            modifier = Modifier.padding(10.dp)
+        ){
+            Text(
+                text = bakery.name,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.W500,
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                text = bakery.street,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.W700,
+                modifier = Modifier.padding(10.dp)
+            )
+
+            Text(
+                text = bakery.postcode,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.W700,
+                modifier = Modifier.padding(10.dp)
+            )
+
+            Text(
+                text = bakery.city,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.W700,
+                modifier = Modifier.padding(10.dp)
+            )
+
+            Text(
+                text = bakery.phonenumber,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.W700,
+                modifier = Modifier.padding(10.dp)
+            )
+
+            Text(
+                text = bakery.contactname,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.W700,
+                modifier = Modifier.padding(10.dp)
+            )
+
+            Text(
+                text = bakery.description,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.W700,
+                modifier = Modifier.padding(10.dp)
+            )
+        }
+    }
+}
+
