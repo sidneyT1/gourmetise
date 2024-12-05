@@ -5,35 +5,42 @@ namespace App\Entity;
 use App\Repository\BakeryRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BakeryRepository::class)]
 class Bakery
 {
     #[ORM\Id]
-    
-
     #[ORM\Column(length: 20)]
+    #[Groups(['appmobile'])]
     private ?string $siren = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['appmobile'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['appmobile'])]
     private ?string $street = null;
 
     #[ORM\Column(length: 5)]
+    #[Groups(['appmobile'])]
     private ?string $postcode = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(['appmobile'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 10)]
+    #[Groups(['appmobile'])]
     private ?string $phonenumber = null;
 
     #[ORM\Column(length: 30)]
+    #[Groups(['appmobile'])]
     private ?string $contactname = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(['appmobile'])]
     private ?string $description = null;
 
     #[ORM\Column]

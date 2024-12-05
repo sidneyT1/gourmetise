@@ -52,7 +52,7 @@ android {
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-    // Jetpack Compose and Material dependencies
+
     implementation("androidx.compose.material:material:1.5.1")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
     implementation("androidx.compose.ui:ui:1.5.1")

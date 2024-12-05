@@ -22,14 +22,15 @@ class APIBakeryController extends AbstractController
     public function getBakeries(EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse {
         try {
             $bakeries = $entityManager->getRepository(Bakery::class)->findAll();
-            $data = $serializer->serialize($bakeries, 'json');
+
+            
+            $data = $serializer->serialize($bakeries, 'json', ['groups' => ['appmobile']]);
 
             return new JsonResponse($data, Response::HTTP_OK, [], true);
         } catch (\Exception $e) {
             return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
 
     #[Route('/api/bakery', methods: ["POST"])]
     public function createBakery(
@@ -108,6 +109,3 @@ class APIBakeryController extends AbstractController
         }
     }
 }
-
-
-
