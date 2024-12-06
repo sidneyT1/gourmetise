@@ -21,7 +21,7 @@
             Inscrivez votre boulangerie pour tenter de remporter le titre de la meilleure boulangerie.
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" to="/sign-in">S'inscrire</v-btn>
+            <v-btn color="primary" to="/Formulaire">S'inscrire</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

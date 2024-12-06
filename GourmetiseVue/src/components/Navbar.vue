@@ -19,7 +19,7 @@
         </router-link>
       </v-btn>
       <v-btn>
-        <router-link to="/sign-in" class="router-link">
+        <router-link to="/Formulaire" class="router-link">
           S'inscrire
         </router-link>
       </v-btn>
