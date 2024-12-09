@@ -90,7 +90,7 @@ class APIBakeryController extends AbstractController
 
             return new JsonResponse(['message' => 'Création Bakery réussie'], Response::HTTP_CREATED);
         } catch (UniqueConstraintViolationException $e) {
-            return new JsonResponse(['error' => 'Ce numéro de siren est déjà enregistrée dans la base de données.'], Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(['error' => 'L\'utilisateur est déjà enregistrée dans la base de données.'], Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
             return new JsonResponse(['error' => 'Une erreur est survenue: ' . $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }

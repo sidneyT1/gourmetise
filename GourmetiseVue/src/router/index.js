@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Index from "@/views/index.vue";
 import ContestParams from '@/components/ContestParams.vue';
 import Formulaire from '@/components/Formulaire.vue';
+import ConditionsUtilisation from '@/components/ConditionsUtilisation.vue';
 
 
 
@@ -23,6 +24,11 @@ const router = createRouter({
             name: 'Formulaire',
             component: Formulaire,
         },
+        {
+            path: '/ConditionsUtilisation',
+            name: 'ConditionsUtilisation',
+            component: ConditionsUtilisation
+          },
       
             
         

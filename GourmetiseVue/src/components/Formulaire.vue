@@ -35,16 +35,17 @@
         <v-card-text>
           <div class="conditions-text">
             En soumettant ce formulaire, J’ai lu et accepté les
-            <a href="/conditions-d-utilisation" class="link-btn">conditions d’utilisation</a>
+            <a href="/ConditionsUtilisation" target="_blank" class="link-btn">conditions d’utilisation</a>
             relatives à la collecte de mes données.
           </div>
           
          
           <v-checkbox 
             v-model="checkbox" 
-            :rules="checkboxRules" 
+            
             label="J'accepte" 
             class="d-flex justify-center mt-4"
+            required
           />
         </v-card-text>
       
