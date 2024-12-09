@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use DateTime;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;  
 
 class APIBakeryController extends AbstractController
 {
@@ -56,7 +57,7 @@ class APIBakeryController extends AbstractController
             if ($existingSiren) {
                 return new JsonResponse(['error' => 'Le SIREN existe déjà.'], Response::HTTP_BAD_REQUEST);
             }
-            
+
             $user = $bakery->getUser();
             if (!$user || !$user->getMail()) {
                 return new JsonResponse(['error' => 'Veuillez fournir un email utilisateur valide.'], Response::HTTP_BAD_REQUEST);
@@ -73,8 +74,8 @@ class APIBakeryController extends AbstractController
 
             $contestParams = $entityManager->getRepository(ContestParams::class)->find(1);
             $now = new DateTime();
-            
-              if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
+
+            if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
                 return new JsonResponse(['error' => 'Vous êtes hors période d\'inscription'], Response::HTTP_FORBIDDEN);
             }
 
@@ -88,8 +89,10 @@ class APIBakeryController extends AbstractController
             $entityManager->flush();
 
             return new JsonResponse(['message' => 'Création Bakery réussie'], Response::HTTP_CREATED);
+        } catch (UniqueConstraintViolationException $e) {
+            return new JsonResponse(['error' => 'Ce numéro de siren est déjà enregistrée dans la base de données.'], Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
-            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(['error' => 'Une erreur est survenue: ' . $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 }
