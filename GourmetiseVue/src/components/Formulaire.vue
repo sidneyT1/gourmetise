@@ -94,7 +94,7 @@ const phoneRules = [
 ];
 const contactNameRules = [v => !!v || 'Le champ nom de contact est obligatoire.'];
 const descriptionRules = [v => !!v || 'Le champ description est obligatoire.'];
-const checkboxRules = [v => !!v || 'Vous devez accepter les conditions d\'utilisation.'];
+//const checkboxRules = [v => !!v || 'Vous devez accepter les conditions d\'utilisation.'];
 
 const empecheValid = computed(() => {
   return [siren, name, street, postalCode, city, phone, contactName, description].every(field => field.value.length > 0) && checkbox.value;
@@ -139,7 +139,7 @@ const submit = async () => {
 
     const response = await axios.post(import.meta.env.VITE_API_URL + '/api/bakery', data);
 
-    toast.success('Formulaire soumis avec succès!');
+    toast.success('Formulaire enregistré avec succès!');
     console.log(response.data);
   } catch (error) {
     if (error.response && error.response.data) {
