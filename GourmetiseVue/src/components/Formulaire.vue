@@ -20,36 +20,30 @@
           ></v-text-field>
         </v-col>
         <v-col cols="8">
-          <v-text-field
+          <v-autocomplete
             v-model="city"
+            :items="communes"
             :rules="cityRules"
             label="Ville"
-          ></v-text-field>
+          ></v-autocomplete>
         </v-col>
       </v-row>
       <v-text-field v-model="phone" :rules="phoneRules" label="Numéro de téléphone" />
       <v-text-field v-model="contactName" :rules="contactNameRules" label="Nom de contact" />
       <v-textarea v-model="description" :rules="descriptionRules" label="Description" rows="5" outlined></v-textarea>
-      
-   
-        <v-card-text>
-          <div class="conditions-text">
-            En soumettant ce formulaire, J’ai lu et accepté les
-            <a href="/ConditionsUtilisation" target="_blank" class="link-btn">conditions d’utilisation</a>
-            relatives à la collecte de mes données.
-          </div>
-          
-         
-          <v-checkbox 
-            v-model="checkbox" 
-            
-            label="J'accepte" 
-            class="d-flex justify-center mt-4"
-            required
-          />
-        </v-card-text>
-      
-
+      <v-card-text>
+        <div class="conditions-text">
+          En soumettant ce formulaire, J’ai lu et accepté les
+          <a href="/ConditionsUtilisation" target="_blank" class="link-btn">conditions d’utilisation</a>
+          relatives à la collecte de mes données.
+        </div>
+        <v-checkbox 
+          v-model="checkbox" 
+          label="J'accepte" 
+          class="d-flex justify-center mt-4"
+          required
+        />
+      </v-card-text>
       <v-row class="validation" justify="center">
         <v-btn to="/" class="large-button me-7">Retour</v-btn>
         <v-btn type="submit" class="large-button" :disabled="!empecheValid">Valider</v-btn> 
@@ -58,10 +52,8 @@
   </v-container>
 </template>
 
-
 <script setup>
 import { ref, computed } from 'vue';
-
 import axios from 'axios';
 import { toast } from 'vue3-toastify';
 
@@ -74,6 +66,7 @@ const phone = ref('');
 const contactName = ref('');
 const description = ref('');
 const checkbox = ref(false);
+const communes = ref([]);
 
 const userEmail = 'abc@gmail.com';
 
@@ -94,7 +87,6 @@ const phoneRules = [
 ];
 const contactNameRules = [v => !!v || 'Le champ nom de contact est obligatoire.'];
 const descriptionRules = [v => !!v || 'Le champ description est obligatoire.'];
-//const checkboxRules = [v => !!v || 'Vous devez accepter les conditions d\'utilisation.'];
 
 const empecheValid = computed(() => {
   return [siren, name, street, postalCode, city, phone, contactName, description].every(field => field.value.length > 0) && checkbox.value;
@@ -105,17 +97,17 @@ const trouveCodepostal = async () => {
     try {
       const response = await axios.get(`https://geo.api.gouv.fr/communes?codePostal=${postalCode.value}`);
       if (response.data.length > 0) {
-        city.value = response.data[0].nom;
+        communes.value = response.data.map(commune => commune.nom);
       } else {
         toast.error('Aucune ville trouvée pour ce code postal.');
-        city.value = '';
+        communes.value = [];
       }
     } catch (error) {
       toast.error('Erreur lors de la récupération de la ville.');
       console.error(error);
     }
   } else {
-    city.value = '';
+    communes.value = [];
   }
 };
 
@@ -150,8 +142,6 @@ const submit = async () => {
     console.error('Erreur lors de la soumission du formulaire:', error);
   }
 };
-
-
 </script>
 
 <style scoped>
@@ -177,24 +167,9 @@ const submit = async () => {
   font-size: 16px;
 }
 
-.conditions-card {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
-
 .conditions-text {
   font-size: 14px;
   text-align: center;
   margin-bottom: 10px;
 }
-
-
-
-
-
-
-
-
 </style>
