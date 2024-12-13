@@ -29,9 +29,13 @@
         </activity>
 
         <activity
-            android:name=".BakeryListActivity"
+            android:name=".BakeryList"
             android:exported="true"
             android:theme="@style/Theme.AppGourmetiseConcours">
+        </activity>
+
+        <activity android:name=".BakeryDetailActivity"
+        android:theme="@style/Theme.AppGourmetiseConcours">
         </activity>
 
     </application>

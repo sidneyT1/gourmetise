@@ -2,6 +2,7 @@ package com.example.appgourmetiseconcours
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -16,13 +17,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgourmetiseconcours.ui.theme.AppGourmetiseConcoursTheme
+import okhttp3.*
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.IOException
 
 class MainActivity : ComponentActivity() {
     private lateinit var dbHelper: BakeryHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         dbHelper = BakeryHelper(this)
         dbHelper.writableDatabase
@@ -31,9 +35,61 @@ class MainActivity : ComponentActivity() {
             AppGourmetiseConcoursTheme {
                 Accueil(
                     onSeeParticipantsClicked = {
-                        startActivity(
-                            Intent(this, BakeryListActivity::class.java)
-                        )
+                        val clientHTTP = OkHttpClient()
+                        val request = Request.Builder()
+                            .url("http://10.0.2.2:8000/api/bakery")
+                            .build()
+
+                        clientHTTP.newCall(request).enqueue(object : Callback {
+                            override fun onFailure(call: Call, e: IOException) {
+                                runOnUiThread {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "ECHEC IMPORT ! ${e.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
+                            override fun onResponse(call: Call, response: Response) {
+                                if (response.isSuccessful) {
+                                    val flux = response.body?.string()
+
+                                    flux?.let {
+                                        val fluxJson = JSONArray(it)
+                                        val bdd = BakeryDAO(this@MainActivity)
+                                        bdd.clearAllBakeries()
+                                        for (i in 0 until fluxJson.length()) {
+                                            val jsonObject: JSONObject = fluxJson.getJSONObject(i)
+                                            bdd.insertBakery(
+                                                jsonObject.getString("siren"),
+                                                jsonObject.getString("name"),
+                                                jsonObject.getString("street"),
+                                                jsonObject.getString("postcode"),
+                                                jsonObject.getString("city"),
+                                                jsonObject.getString("phonenumber"),
+                                                jsonObject.getString("contactname"),
+                                                jsonObject.optString("description", null)
+                                            )
+                                        }
+                                        runOnUiThread {
+                                            Toast.makeText(this@MainActivity, "IMPORT REUSSI !", Toast.LENGTH_SHORT).show()
+                                            startActivity(
+                                                Intent(this@MainActivity, BakeryList::class.java)
+                                            )
+                                        }
+                                    }
+                                } else {
+                                    runOnUiThread {
+                                        Toast.makeText(
+                                            this@MainActivity,
+                                            "ECHEC IMPORT ! ${response.code} ${response.message}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                            }
+                        })
                     }
                 )
             }
@@ -44,9 +100,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Accueil(onSeeParticipantsClicked: () -> Unit) {
     Scaffold(
-        topBar = {
-
-        },
+        topBar = {},
         content = { innerPadding ->
             Column(
                 modifier = Modifier
@@ -87,7 +141,7 @@ fun Accueil(onSeeParticipantsClicked: () -> Unit) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF7043))
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff2e00))
                     ) {
                         Text("Voir les participants")
                     }
