@@ -7,15 +7,16 @@
     </v-row>
 
     <form @submit.prevent="submit">
-      <v-text-field v-model="siren" :rules="sirenRules" label="N° SIREN/SIRET" />
-      <v-text-field v-model="name" :rules="nameRules" label="Nom" />
-      <v-text-field v-model="street" :rules="streetRules" label="Rue" />
+      <v-text-field v-model="siren" :rules="sirenRules" label="N° SIREN/SIRET" placeholder="Exemple : 123456789" />
+      <v-text-field v-model="name" :rules="nameRules" label="Nom" placeholder="Exemple : Boulangerie Dupont" />
+      <v-text-field v-model="street" :rules="streetRules" label="Rue" placeholder="Exemple : 12 rue des Lilas" />
       <v-row>
         <v-col cols="4">
           <v-text-field
             v-model="postalCode"
             :rules="postalCodeRules"
             label="Code Postal"
+            placeholder="Exemple : 75001"
             @blur="trouveCodepostal"
           ></v-text-field>
         </v-col>
@@ -25,12 +26,13 @@
             :items="communes"
             :rules="cityRules"
             label="Ville"
+            placeholder="Exemple : Paris"
           ></v-autocomplete>
         </v-col>
       </v-row>
-      <v-text-field v-model="phone" :rules="phoneRules" label="Numéro de téléphone" />
-      <v-text-field v-model="contactName" :rules="contactNameRules" label="Nom de contact" />
-      <v-textarea v-model="description" :rules="descriptionRules" label="Description" rows="5" outlined></v-textarea>
+      <v-text-field v-model="phone" :rules="phoneRules" label="Numéro de téléphone" placeholder="Exemple : 04 95 87 17 02" />
+      <v-text-field v-model="contactName" :rules="contactNameRules" label="Nom de contact" placeholder="Exemple : Jean Dupont" />
+      <v-textarea v-model="description" :rules="descriptionRules" label="Description" rows="5" outlined placeholder="Décrivez votre boulangerie en quelques lignes"></v-textarea>
       <v-card-text>
         <div class="conditions-text">
           En soumettant ce formulaire, J’ai lu et accepté les
@@ -72,7 +74,7 @@ const userEmail = 'abc@gmail.com';
 
 const sirenRules = [
   v => !!v || 'Le champ SIREN/SIRET est obligatoire.',
-  v => /^(\d{9}|\d{14})$/.test(v) || 'Le N° SIREN/SIRET doit contenir 9 ou 14 chiffres.'
+  v => /^\d{9}$|^\d{14}$/.test(v) || 'Le N° SIREN/SIRET doit contenir 9 ou 14 chiffres.'
 ];
 const nameRules = [v => !!v || 'Le champ nom est obligatoire.'];
 const streetRules = [v => !!v || 'Le champ rue est obligatoire.'];
