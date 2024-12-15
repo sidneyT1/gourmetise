@@ -9,8 +9,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,58 +29,69 @@ class BakeryList : ComponentActivity() {
                 val bdd = BakeryDAO(context)
                 val lesBakeries = bdd.getAllBakeries()
 
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
-                ) {
-                    items(lesBakeries) { bakery ->
+                Column(modifier = Modifier.fillMaxSize()) {
 
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp)
-                                .clickable {
-                                    val intent = Intent(context, BakeryDetailActivity::class.java)
-                                    intent.putExtra("name", bakery.name)
+                    Text(
+                        text = "Liste des Boulangeries Participantes",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .align(Alignment.CenterHorizontally)
+                    )
 
 
-                                    val address = bakery.street + ", " + bakery.postcode + " " + bakery.city
-                                    intent.putExtra("address", address)
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 16.dp)
+                    ) {
+                        items(lesBakeries) { bakery ->
 
-
-                                    val details = "Téléphone: " + bakery.phonenumber + "\n" +
-                                            "Contact: " + bakery.contactname + "\n" +
-                                            "Description: " + (bakery.description)
-                                    intent.putExtra("details", details)
-
-                                    context.startActivity(intent)
-                                }
-                        ) {
-                            Row(
+                            Card(
                                 modifier = Modifier
-                                    .padding(16.dp)
-                                    .fillMaxWidth(),
-                                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp)
+                                    .clickable {
+                                        val intent = Intent(context, BakeryDetailActivity::class.java)
+                                        intent.putExtra("name", bakery.name)
+
+                                        val address = bakery.street + ", " + bakery.postcode + " " + bakery.city
+                                        intent.putExtra("address", address)
+
+                                        val details = "Téléphone: " + bakery.phonenumber + "\n" +
+                                                "Contact: " + bakery.contactname + "\n" +
+                                                "Description: " + (bakery.description)
+                                        intent.putExtra("details", details)
+
+                                        context.startActivity(intent)
+                                    }
                             ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.logogourmetise),
-                                    contentDescription = "Logo Gourmetise",
+                                Row(
                                     modifier = Modifier
-                                        .size(64.dp)
-                                        .padding(end = 16.dp)
-                                )
-                                Column {
-                                    Text(
-                                        text = bakery.name,
-                                        fontSize = 18.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        modifier = Modifier.padding(bottom = 8.dp)
+                                        .padding(16.dp)
+                                        .fillMaxWidth(),
+                                    verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.logogourmetise),
+                                        contentDescription = "Logo Gourmetise",
+                                        modifier = Modifier
+                                            .size(64.dp)
+                                            .padding(end = 16.dp)
                                     )
-                                    Text(
-                                        text = bakery.street + ", " + bakery.city,
-                                        fontSize = 17.sp,
-                                    )
+                                    Column {
+                                        Text(
+                                            text = bakery.name,
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            modifier = Modifier.padding(bottom = 8.dp)
+                                        )
+                                        Text(
+                                            text = bakery.street + ", " + bakery.postcode + " " + bakery.city,
+                                            fontSize = 17.sp,
+                                        )
+                                    }
                                 }
                             }
                         }

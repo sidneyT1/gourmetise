@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,36 +20,48 @@ import androidx.compose.ui.unit.sp
 import com.example.appgourmetiseconcours.ui.theme.AppGourmetiseConcoursTheme
 import okhttp3.*
 import org.json.JSONArray
-import org.json.JSONException
+
 import org.json.JSONObject
 import java.io.IOException
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import java.text.SimpleDateFormat
+import java.util.*
+
+import java.util.Date
 
 class MainActivity : ComponentActivity() {
     private lateinit var contestParamsDAO: ContestParamsDAO
+    private var contestParams by mutableStateOf<ContestParams?>(null)
+    private var verifImport = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         contestParamsDAO = ContestParamsDAO(this)
-
-        fetchContestParams()
+        getContestParams()
 
         setContent {
             AppGourmetiseConcoursTheme {
                 Accueil(
                     VoirParticipants = {
-                        getBakeries()
-                    }
+                        if (verifImport) {
+                            showToast("Données des participants déjà récupérées.")
+
+                            startActivity(Intent(this@MainActivity, BakeryList::class.java))
+                        } else {
+                            getBakeries()
+                        }
+                    },
+                    contestParams = contestParams
                 )
             }
         }
     }
 
-    private fun fetchContestParams() {
+    private fun getContestParams() {
         val clientHTTP = OkHttpClient()
-        val request = Request.Builder()
-            .url("http://10.0.2.2:8000/api/contestParams")
-            .build()
+        val request = Request.Builder().url("http://10.0.2.2:8000/api/contestParams").build()
 
         clientHTTP.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -58,25 +71,28 @@ class MainActivity : ComponentActivity() {
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
                     val flux = response.body?.string()
-
                     flux?.let {
                         try {
                             val fluxJson = JSONObject(it)
-
-                            val title = fluxJson.getString("title")
-                            val description = fluxJson.getString("description")
-                            val startRegistration = fluxJson.getString("startRegistration")
-                            val endRegistration = fluxJson.getString("endRegistration")
-                            val startEvaluation = fluxJson.getString("startEvaluation")
-                            val endEvaluation = fluxJson.getString("endEvaluation")
-
                             contestParamsDAO.clearAllContestParams()
                             contestParamsDAO.insertContestParams(
-                                title, description, startRegistration, endRegistration, startEvaluation, endEvaluation
+                                fluxJson.getString("title"),
+                                fluxJson.getString("description"),
+                                fluxJson.getString("startRegistration"),
+                                fluxJson.getString("endRegistration"),
+                                fluxJson.getString("startEvaluation"),
+                                fluxJson.getString("endEvaluation")
                             )
-
+                            contestParams = ContestParams(
+                                fluxJson.getString("title"),
+                                fluxJson.getString("description"),
+                                fluxJson.getString("startRegistration"),
+                                fluxJson.getString("endRegistration"),
+                                fluxJson.getString("startEvaluation"),
+                                fluxJson.getString("endEvaluation")
+                            )
                             showToast("Import Concours Réussi")
-                        } catch (e: JSONException) {
+                        } catch (e: Exception) {
                             showToast("Erreur parsing JSON : " + e.message)
                         }
                     }
@@ -87,15 +103,9 @@ class MainActivity : ComponentActivity() {
         })
     }
 
-
-
-
-
     private fun getBakeries() {
         val clientHTTP = OkHttpClient()
-        val request = Request.Builder()
-            .url("http://10.0.2.2:8000/api/bakery")
-            .build()
+        val request = Request.Builder().url("http://10.0.2.2:8000/api/bakery").build()
 
         clientHTTP.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -105,14 +115,12 @@ class MainActivity : ComponentActivity() {
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
                     val flux = response.body?.string()
-
                     flux?.let {
                         val fluxJson = JSONArray(it)
                         val bdd = BakeryDAO(this@MainActivity)
                         bdd.clearAllBakeries()
-
                         for (i in 0 until fluxJson.length()) {
-                            val jsonObject: JSONObject = fluxJson.getJSONObject(i)
+                            val jsonObject = fluxJson.getJSONObject(i)
                             bdd.insertBakery(
                                 jsonObject.getString("siren"),
                                 jsonObject.getString("name"),
@@ -124,9 +132,9 @@ class MainActivity : ComponentActivity() {
                                 jsonObject.optString("description", null)
                             )
                         }
-
                         showToast("Import Participants Réussi")
                         startActivity(Intent(this@MainActivity, BakeryList::class.java))
+                        verifImport = true
                     }
                 } else {
                     showToast("Échec Import Participants: " + response.code + " " + response.message)
@@ -143,9 +151,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Accueil(VoirParticipants: () -> Unit) {
+fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
+    var showAlert by remember { mutableStateOf(false) }
+
     Scaffold(
-        topBar = {},
         content = { innerPadding ->
             Column(
                 modifier = Modifier
@@ -157,7 +166,7 @@ fun Accueil(VoirParticipants: () -> Unit) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.logogourmetise),
-                    contentDescription = "Logo du Concours",
+                    contentDescription = "Logo",
                     modifier = Modifier.size(150.dp)
                 )
 
@@ -169,29 +178,57 @@ fun Accueil(VoirParticipants: () -> Unit) {
                     modifier = Modifier.padding(16.dp)
                 )
 
-                Text(
-                    text = "Du 18 mai 2025 au 18 juillet 2025",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF37474F),
-                    modifier = Modifier.padding(16.dp)
-                )
+                contestParams?.let {
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                    val startEvalDate: Date = dateFormat.parse(it.startEvaluation) ?: Date()
+                    val endEvalDate: Date = dateFormat.parse(it.endEvaluation) ?: Date()
 
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+
+                    val date = SimpleDateFormat("dd MMMM yyyy", Locale.FRENCH)
+                    Text(
+                        text = "Du ${date.format(startEvalDate)} au ${date.format(endEvalDate)}",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF37474F),
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+
+                Button(
+                    onClick = {
+                        val dateActuelle = Date()
+                        contestParams?.let {
+                            val startEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                .parse(it.startEvaluation) ?: Date()
+                            val endEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                .parse(it.endEvaluation) ?: Date()
+
+                            if (dateActuelle.before(startEvalDate) || dateActuelle.after(endEvalDate)) {
+                                showAlert = true
+                            } else {
+                                VoirParticipants()
+                            }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff2e00))
                 ) {
-                    Button(
-                        onClick = { VoirParticipants() },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff2e00))
-                    ) {
-                        Text("Voir les participants")
-                    }
+                    Text("Voir les participants")
                 }
             }
         }
     )
+
+    if (showAlert) {
+        AlertDialog(
+            onDismissRequest = { showAlert = false },
+            title = { Text(text = "Attention") },
+            text = { Text(text = "La période d'évaluation est terminée ou n'a pas encore commencé.") },
+            confirmButton = {
+                Button(onClick = { showAlert = false }) {
+                    Text("OK")
+                }
+            }
+        )
+    }
 }
