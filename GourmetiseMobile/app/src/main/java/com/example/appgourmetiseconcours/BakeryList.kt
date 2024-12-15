@@ -43,14 +43,17 @@ class BakeryList : ComponentActivity() {
                                 .clickable {
                                     val intent = Intent(context, BakeryDetailActivity::class.java)
                                     intent.putExtra("name", bakery.name)
-                                    val putExtra = intent.putExtra(
-                                        "address",
-                                        "${bakery.street}, ${bakery.postcode} ${bakery.city}"
-                                    )
-                                    intent.putExtra(
-                                        "details",
-                                        "Téléphone: ${bakery.phonenumber}\nContact: ${bakery.contactname}\nDescription: ${bakery.description}"
-                                    )
+
+
+                                    val address = bakery.street + ", " + bakery.postcode + " " + bakery.city
+                                    intent.putExtra("address", address)
+
+
+                                    val details = "Téléphone: " + bakery.phonenumber + "\n" +
+                                            "Contact: " + bakery.contactname + "\n" +
+                                            "Description: " + (bakery.description)
+                                    intent.putExtra("details", details)
+
                                     context.startActivity(intent)
                                 }
                         ) {
@@ -75,9 +78,8 @@ class BakeryList : ComponentActivity() {
                                         modifier = Modifier.padding(bottom = 8.dp)
                                     )
                                     Text(
-                                        text = "${bakery.street}, ${bakery.city}",
+                                        text = bakery.street + ", " + bakery.city,
                                         fontSize = 17.sp,
-
                                     )
                                 }
                             }

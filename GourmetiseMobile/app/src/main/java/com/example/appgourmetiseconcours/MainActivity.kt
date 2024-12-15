@@ -19,86 +19,131 @@ import androidx.compose.ui.unit.sp
 import com.example.appgourmetiseconcours.ui.theme.AppGourmetiseConcoursTheme
 import okhttp3.*
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
 class MainActivity : ComponentActivity() {
-    private lateinit var dbHelper: BakeryHelper
+    private lateinit var contestParamsDAO: ContestParamsDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dbHelper = BakeryHelper(this)
-        dbHelper.writableDatabase
+        contestParamsDAO = ContestParamsDAO(this)
+
+        fetchContestParams()
 
         setContent {
             AppGourmetiseConcoursTheme {
                 Accueil(
-                    onSeeParticipantsClicked = {
-                        val clientHTTP = OkHttpClient()
-                        val request = Request.Builder()
-                            .url("http://10.0.2.2:8000/api/bakery")
-                            .build()
-
-                        clientHTTP.newCall(request).enqueue(object : Callback {
-                            override fun onFailure(call: Call, e: IOException) {
-                                runOnUiThread {
-                                    Toast.makeText(
-                                        this@MainActivity,
-                                        "ECHEC IMPORT ! ${e.message}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-
-                            override fun onResponse(call: Call, response: Response) {
-                                if (response.isSuccessful) {
-                                    val flux = response.body?.string()
-
-                                    flux?.let {
-                                        val fluxJson = JSONArray(it)
-                                        val bdd = BakeryDAO(this@MainActivity)
-                                        bdd.clearAllBakeries()
-                                        for (i in 0 until fluxJson.length()) {
-                                            val jsonObject: JSONObject = fluxJson.getJSONObject(i)
-                                            bdd.insertBakery(
-                                                jsonObject.getString("siren"),
-                                                jsonObject.getString("name"),
-                                                jsonObject.getString("street"),
-                                                jsonObject.getString("postcode"),
-                                                jsonObject.getString("city"),
-                                                jsonObject.getString("phonenumber"),
-                                                jsonObject.getString("contactname"),
-                                                jsonObject.optString("description", null)
-                                            )
-                                        }
-                                        runOnUiThread {
-                                            Toast.makeText(this@MainActivity, "IMPORT REUSSI !", Toast.LENGTH_SHORT).show()
-                                            startActivity(
-                                                Intent(this@MainActivity, BakeryList::class.java)
-                                            )
-                                        }
-                                    }
-                                } else {
-                                    runOnUiThread {
-                                        Toast.makeText(
-                                            this@MainActivity,
-                                            "ECHEC IMPORT ! ${response.code} ${response.message}",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                }
-                            }
-                        })
+                    VoirParticipants = {
+                        getBakeries()
                     }
                 )
             }
         }
     }
+
+    private fun fetchContestParams() {
+        val clientHTTP = OkHttpClient()
+        val request = Request.Builder()
+            .url("http://10.0.2.2:8000/api/contestParams")
+            .build()
+
+        clientHTTP.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                showToast("Échec Import Concours: " + e.message)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val flux = response.body?.string()
+
+                    flux?.let {
+                        try {
+                            val fluxJson = JSONObject(it)
+
+                            val title = fluxJson.getString("title")
+                            val description = fluxJson.getString("description")
+                            val startRegistration = fluxJson.getString("startRegistration")
+                            val endRegistration = fluxJson.getString("endRegistration")
+                            val startEvaluation = fluxJson.getString("startEvaluation")
+                            val endEvaluation = fluxJson.getString("endEvaluation")
+
+                            contestParamsDAO.clearAllContestParams()
+                            contestParamsDAO.insertContestParams(
+                                title, description, startRegistration, endRegistration, startEvaluation, endEvaluation
+                            )
+
+                            showToast("Import Concours Réussi")
+                        } catch (e: JSONException) {
+                            showToast("Erreur parsing JSON : " + e.message)
+                        }
+                    }
+                } else {
+                    showToast("Échec Import Concours: " + response.code + " " + response.message)
+                }
+            }
+        })
+    }
+
+
+
+
+
+    private fun getBakeries() {
+        val clientHTTP = OkHttpClient()
+        val request = Request.Builder()
+            .url("http://10.0.2.2:8000/api/bakery")
+            .build()
+
+        clientHTTP.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                showToast("Échec Import Participants: " + e.message)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val flux = response.body?.string()
+
+                    flux?.let {
+                        val fluxJson = JSONArray(it)
+                        val bdd = BakeryDAO(this@MainActivity)
+                        bdd.clearAllBakeries()
+
+                        for (i in 0 until fluxJson.length()) {
+                            val jsonObject: JSONObject = fluxJson.getJSONObject(i)
+                            bdd.insertBakery(
+                                jsonObject.getString("siren"),
+                                jsonObject.getString("name"),
+                                jsonObject.getString("street"),
+                                jsonObject.getString("postcode"),
+                                jsonObject.getString("city"),
+                                jsonObject.getString("phonenumber"),
+                                jsonObject.getString("contactname"),
+                                jsonObject.optString("description", null)
+                            )
+                        }
+
+                        showToast("Import Participants Réussi")
+                        startActivity(Intent(this@MainActivity, BakeryList::class.java))
+                    }
+                } else {
+                    showToast("Échec Import Participants: " + response.code + " " + response.message)
+                }
+            }
+        })
+    }
+
+    private fun showToast(message: String) {
+        runOnUiThread {
+            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+        }
+    }
 }
 
 @Composable
-fun Accueil(onSeeParticipantsClicked: () -> Unit) {
+fun Accueil(VoirParticipants: () -> Unit) {
     Scaffold(
         topBar = {},
         content = { innerPadding ->
@@ -137,7 +182,7 @@ fun Accueil(onSeeParticipantsClicked: () -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Button(
-                        onClick = { onSeeParticipantsClicked() },
+                        onClick = { VoirParticipants() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp),
