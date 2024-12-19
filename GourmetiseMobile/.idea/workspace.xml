@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fa69a47-26b6-4924-b3b6-0902f31e3ee2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/src/components/Formulaire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/src/components/Formulaire.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/src/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/src/views/index.vue" afterDir="false" />
-    </list>
+    <list default="true" id="9fa69a47-26b6-4924-b3b6-0902f31e3ee2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +94,7 @@
     "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "connexion",
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   },
