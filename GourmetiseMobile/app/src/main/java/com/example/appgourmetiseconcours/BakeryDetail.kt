@@ -50,7 +50,7 @@ class BakeryDetailActivity : ComponentActivity() {
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
                     Text(
-                        text = "Informations : $bakeryDetails",
+                        text = "$bakeryDetails",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Light,
                         modifier = Modifier.padding(bottom = 16.dp)
