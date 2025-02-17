@@ -30,6 +30,7 @@ security:
             lazy: true
             provider: app_user_provider
 
+// ROLE_PARTICIPANT
     access_control:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/register, roles: PUBLIC_ACCESS }
