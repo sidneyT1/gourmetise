@@ -2,6 +2,8 @@
 
 namespace App\Controller\API;
 use App\Entity\User; // Ensure this is included
+use App\Repository\UserRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,37 +18,28 @@ use DateTime;
 class APIUserController extends AbstractController
 {
 
-    #[Route('/api/users', methods :["POST"])]
+    #[Route('/api/users', methods: ['POST'])]
     public function createUser(
-    Request $request,
-    EntityManagerInterface $entityManager,
-    SerializerInterface $serializer
-    ) : JsonResponse
-    {
-    // récupérer le contenu JSON de la requête
-    $data = $request->getContent();
+        Request $request,
+        UserRepository $userRepository,
+        SerializerInterface $serializer
+    ): JsonResponse {
+        $data = $request->getContent();
     
-
-    try {
-    // désérialiser le JSON en une instance de l'entité Concurrent
-    $user = $serializer->deserialize($data, User::class, 'json');
-
-
-    $user->setCreatedAt(new DateTime());
-  
-    // enregistrer le nouveau Concurrent dans la base de données
-    $entityManager->persist($user);
-    $entityManager->flush();
-    // envoyer réponse de succès de la création
-    return $this->json( 'Création User réussie', Response::HTTP_CREATED);
+        try {
+            // Désérialiser le JSON en une instance de User
+            $user = $serializer->deserialize($data, User::class, 'json');
+            $user->setCreatedAt(new \DateTime());
+    
+            // Créer l'utilisateur et obtenir le token JWT
+            $token = $userRepository->registerUser($user);
+    
+            return new JsonResponse(['token' => $token], Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
     }
-     catch (\Exception $e) {
-    return new JsonResponse( ['error' => $e->getMessage()],
-     Response::HTTP_BAD_REQUEST);
-    }
-    }
-
-
+    
 
 
 

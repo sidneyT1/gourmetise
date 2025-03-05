@@ -13,4 +13,13 @@ class AuthController extends AbstractController
     {
         
     }
+
+    #[Route('/api/profile', name: 'profile', methods: ['GET'])]
+    public function getProfile(): JsonResponse
+    {
+    
+    // Récupérer l'utilisateur connecté
+    $user = $this->getUser();
+    return $this->json ($user, status: Response::HTTP_OK );
+    }
 }

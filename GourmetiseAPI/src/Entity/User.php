@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -16,20 +16,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50, unique:true)]
+    #[ORM\Column(length: 30, unique: true)]
     private ?string $mail = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeInterface $created_at = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\Column( length: 30)]
-    private ?string $role = null;
+    #[ORM\Column]
+    private array $roles = [];
 
     public function getId(): ?int
     {
@@ -44,7 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
-
         return $this;
     }
 
@@ -56,56 +55,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    public function setCreatedAt(\DateTimeInterface $created_at): static
     {
-        $this->createdAt = $createdAt;
-
+        $this->created_at = $created_at;
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    public function setUpdatedAt(\DateTimeInterface $updated_at): static
     {
-        $this->updatedAt = $updatedAt;
-
+        $this->updated_at = $updated_at;
         return $this;
     }
-    // $roles[]= 'ROLE_USER';
-    public function getRole(): ?string
+
+    public function getUserIdentifier(): string
     {
-        return $this->role;
+        return $this->mail; 
     }
 
     public function getRoles(): array
     {
-        $roles = [$this->role];
-
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER'; 
         return array_unique($roles);
     }
 
-    
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+        return $this;
+    }
 
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+      
     }
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->mail;
-    }
-
 }

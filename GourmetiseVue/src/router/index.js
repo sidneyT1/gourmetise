@@ -3,6 +3,8 @@ import Index from "@/views/index.vue";
 import ContestParams from '@/components/ContestParams.vue';
 import Formulaire from '@/components/Formulaire.vue';
 import ConditionsUtilisation from '@/components/ConditionsUtilisation.vue';
+import Signup from '@/components/Signup.vue';
+import Login from '@/components/Login.vue';
 
 
 
@@ -28,8 +30,18 @@ const router = createRouter({
             path: '/ConditionsUtilisation',
             name: 'ConditionsUtilisation',
             component: ConditionsUtilisation
-          },
-      
+        },
+        {
+            path: '/Signup',
+            name: 'Signup',
+            component: Signup
+        },
+        {
+            path: '/Login',
+            name: 'Login',
+            component: Login
+
+        }
             
         
     ],
