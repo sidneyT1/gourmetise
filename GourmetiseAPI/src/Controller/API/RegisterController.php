@@ -30,7 +30,8 @@ class RegisterController extends AbstractController
         $user = new User();
         $user->setMail($data['mail']);
         $user->setPassword($passwordHasher->hashPassword($user, $data['password']));
-        $user->setRoles(["ROLE_USER"]);
+        $user->setRoles(["ROLE_PARTICIPANT"]);
+
 
         $user->setCreatedAt(new \DateTime());
 

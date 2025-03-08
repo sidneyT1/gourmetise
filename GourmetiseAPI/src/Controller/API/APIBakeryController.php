@@ -68,7 +68,7 @@ class APIBakeryController extends AbstractController
                 return new JsonResponse(['error' => 'Utilisateur introuvable.'], Response::HTTP_BAD_REQUEST);
             }
 
-            if ($existingUser->getRole() !== 'Participant') {
+            if (!in_array('ROLE_PARTICIPANT', $existingUser->getRoles())) {
                 return new JsonResponse(['error' => 'L\'utilisateur n\'est pas un participant'], Response::HTTP_BAD_REQUEST);
             }
 
