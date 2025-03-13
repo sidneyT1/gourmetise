@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class BakeryHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_NAME = "gourmetise_db"
-        private const val DATABASE_VERSION = 5
+        private const val DATABASE_VERSION = 8
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -21,7 +21,9 @@ class BakeryHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                     "city VARCHAR(20) NOT NULL," +
                     "phonenumber VARCHAR(10) NOT NULL," +
                     "contactname VARCHAR(30) NOT NULL," +
-                    "description LONGTEXT DEFAULT NULL);"
+                    "description LONGTEXT DEFAULT NULL," +
+                    "ticketNum VARCHAR(100)," +
+                    "evaluationDate DATETIME );"
         )
 
 
@@ -35,11 +37,30 @@ class BakeryHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                     "start_evaluation DATETIME NOT NULL," +
                     "end_evaluation DATETIME NOT NULL);"
         )
+
+        db.execSQL(
+            "CREATE TABLE criteria (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "title VARCHAR(100) NOT NULL);"
+
+        )
+        db.execSQL(
+            "CREATE TABLE note (" +
+                    "value INTEGER," +
+                    "bakery_siren VARCHAR(14), " +
+                    "criteria_id INTEGER, " +
+                    "PRIMARY KEY (bakery_siren, criteria_id), " +
+                    "FOREIGN KEY (bakery_siren) REFERENCES bakery(siren), " +
+                    "FOREIGN KEY (criteria_id) REFERENCES criteria(id));"
+        )
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS bakery;")
         db.execSQL("DROP TABLE IF EXISTS contest_params;")
+        db.execSQL("DROP TABLE IF EXISTS criteria;")
+        db.execSQL("DROP TABLE IF EXISTS note;")
         onCreate(db)
     }
 }
