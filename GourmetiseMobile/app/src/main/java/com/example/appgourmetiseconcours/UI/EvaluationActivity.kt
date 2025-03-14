@@ -1,4 +1,5 @@
-// EvaluationActivity.kt
+package com.example.appgourmetiseconcours.UI
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -11,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.platform.LocalContext
@@ -44,7 +46,6 @@ class EvaluationActivity : ComponentActivity() {
                 }
             }
 
-
             if (ticketCode == ticketNum) {
                 isTicketValid = true
             }
@@ -76,7 +77,6 @@ class EvaluationActivity : ComponentActivity() {
                     )
                 }
 
-
                 Text("Entrez votre code ticket:")
                 BasicTextField(
                     value = ticketCode,
@@ -84,10 +84,8 @@ class EvaluationActivity : ComponentActivity() {
                     modifier = Modifier
                         .padding(bottom = 16.dp)
                         .fillMaxWidth()
-
                         .padding(16.dp)
                 )
-
 
                 if (isTicketValid) {
                     Row(
@@ -100,11 +98,17 @@ class EvaluationActivity : ComponentActivity() {
                         Text("Accueil", modifier = Modifier.weight(1f))
                         TextField(
                             value = note1,
-                            onValueChange = { note1 = it },
+                            onValueChange = {
+
+                                if (it.all { char -> char.isDigit() }) {
+                                    note1 = it
+                                }
+                            },
                             keyboardOptions = KeyboardOptions.Default.copy(
-                                imeAction = ImeAction.Next
+                                imeAction = ImeAction.Next,
+                                keyboardType = KeyboardType.Number
                             ),
-                            keyboardActions = KeyboardActions(onNext = { }),
+                            keyboardActions = KeyboardActions(onNext = {}),
                             modifier = Modifier
                                 .width(80.dp)
                                 .padding(start = 8.dp)
@@ -122,11 +126,17 @@ class EvaluationActivity : ComponentActivity() {
                         Text("Produits", modifier = Modifier.weight(1f))
                         TextField(
                             value = note2,
-                            onValueChange = { note2 = it },
+                            onValueChange = {
+
+                                if (it.all { char -> char.isDigit() }) {
+                                    note2 = it
+                                }
+                            },
                             keyboardOptions = KeyboardOptions.Default.copy(
-                                imeAction = ImeAction.Next
+                                imeAction = ImeAction.Next,
+                                keyboardType = KeyboardType.Number
                             ),
-                            keyboardActions = KeyboardActions(onNext = { }),
+                            keyboardActions = KeyboardActions(onNext = {}),
                             modifier = Modifier
                                 .width(80.dp)
                                 .padding(start = 8.dp)
@@ -144,11 +154,17 @@ class EvaluationActivity : ComponentActivity() {
                         Text("Présentation", modifier = Modifier.weight(1f))
                         TextField(
                             value = note3,
-                            onValueChange = { note3 = it },
+                            onValueChange = {
+
+                                if (it.all { char -> char.isDigit() }) {
+                                    note3 = it
+                                }
+                            },
                             keyboardOptions = KeyboardOptions.Default.copy(
-                                imeAction = ImeAction.Done
+                                imeAction = ImeAction.Done,
+                                keyboardType = KeyboardType.Number
                             ),
-                            keyboardActions = KeyboardActions(onDone = { }),
+                            keyboardActions = KeyboardActions(onDone = {}),
                             modifier = Modifier
                                 .width(80.dp)
                                 .padding(start = 8.dp)
@@ -156,37 +172,41 @@ class EvaluationActivity : ComponentActivity() {
                         Text(" / 5", modifier = Modifier.padding(start = 8.dp))
                     }
 
-                    Spacer(modifier = Modifier.height(24.dp))
-
                     Button(
                         onClick = {
                             val noteDAO = NoteDAO(context)
                             val criteriaDAO = CriteriaDAO(context)
+                            val bakeryDAO = BakeryDAO(context)
 
-                            val accueilId = criteriaDAO.getCriteriaIdByTitle("accueil") ?: criteriaDAO.insertCriteria("accueil")
-                            val produitsId = criteriaDAO.getCriteriaIdByTitle("produits") ?: criteriaDAO.insertCriteria("produits")
-                            val presentationId = criteriaDAO.getCriteriaIdByTitle("présentation") ?: criteriaDAO.insertCriteria("présentation")
+                            val accueilId = criteriaDAO.getCriteriaIdByTitle("accueil")
+                                ?: criteriaDAO.insertCriteria("accueil")
+                            val produitsId = criteriaDAO.getCriteriaIdByTitle("produits")
+                                ?: criteriaDAO.insertCriteria("produits")
+                            val presentationId = criteriaDAO.getCriteriaIdByTitle("présentation")
+                                ?: criteriaDAO.insertCriteria("présentation")
 
                             val value1 = note1.toIntOrNull() ?: 0
                             val value2 = note2.toIntOrNull() ?: 0
                             val value3 = note3.toIntOrNull() ?: 0
 
-                            if (bakerySiren.isNotEmpty()) {
+                            if (bakerySiren.isNotEmpty() && ticketCode.isNotEmpty()) {
                                 noteDAO.insertNote(value1, bakerySiren, accueilId)
                                 noteDAO.insertNote(value2, bakerySiren, produitsId)
                                 noteDAO.insertNote(value3, bakerySiren, presentationId)
+
+                                bakeryDAO.updateTicketNum(bakerySiren, ticketCode)
+
                                 Toast.makeText(context, "Notes soumises avec succès!", Toast.LENGTH_SHORT).show()
+
+                                finish()
                             } else {
-                                Toast.makeText(context, "Erreur : Boulangerie non spécifiée.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Erreur : Boulangerie ou code ticket non spécifiés.", Toast.LENGTH_SHORT).show()
                             }
                         },
                         modifier = Modifier.padding(top = 16.dp)
                     ) {
                         Text("Soumettre les Notes")
                     }
-                } else {
-
-                    Text("Code ticket incorrect ou non saisi", color = MaterialTheme.colorScheme.error)
                 }
             }
         }

@@ -27,7 +27,7 @@
 18-->[androidx.core:core:1.15.0] C:\Users\truchet\.gradle\caches\transforms-4\7cf9944857bab82720a98a274a817d14\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 19
 20    <application
-20-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:8:5-47:19
+20-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:8:5-49:19
 21        android:allowBackup="true"
 21-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:11:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -74,26 +74,26 @@
 44        </activity>
 45        <activity
 45-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:33:9-37:20
-46            android:name="UI.BakeryList"
-46-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:34:13-41
+46            android:name="com.example.appgourmetiseconcours.UI.BakeryList"
+46-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:34:13-75
 47            android:exported="true"
 47-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:35:13-36
 48            android:theme="@style/Theme.AppGourmetiseConcours" >
 48-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:36:13-63
 49        </activity>
 50        <activity
-50-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:39:9-41:20
+50-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:40:9-42:20
 51            android:name="com.example.appgourmetiseconcours.UI.BakeryDetailActivity"
-51-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:39:19-58
+51-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:40:19-58
 52            android:theme="@style/Theme.AppGourmetiseConcours" >
-52-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:40:9-59
+52-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:41:9-59
 53        </activity>
 54        <activity
-54-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:43:9-45:20
-55            android:name="UI.EvaluationActivity"
-55-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:43:19-55
+54-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:44:9-46:20
+55            android:name="com.example.appgourmetiseconcours.UI.EvaluationActivity"
+55-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:44:19-89
 56            android:theme="@style/Theme.AppGourmetiseConcours" >
-56-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:44:13-63
+56-->C:\Users\truchet\Desktop\gourmetise\GourmetiseMobile\app\src\main\AndroidManifest.xml:45:13-63
 57        </activity>
 58        <activity
 58-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\truchet\.gradle\caches\transforms-4\e772edf0ac0622073de03e8677607bdc\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39

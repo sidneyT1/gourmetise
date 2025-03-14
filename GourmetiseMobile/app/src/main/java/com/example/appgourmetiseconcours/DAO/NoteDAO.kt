@@ -42,6 +42,24 @@ class NoteDAO(context: Context) {
 
 
     fun clearAllNotes() {
+
         db.delete("note", null, null)
     }
+    fun getBakeryScore(bakerySiren: String): Int {
+        val cursor = db.rawQuery(
+            "SELECT SUM(value) FROM note WHERE bakery_siren = ?",
+            arrayOf(bakerySiren)
+        )
+
+        var totalScore = 0
+        if (cursor.moveToFirst()) {
+            totalScore = cursor.getInt(0)
+        }
+        cursor.close()
+        return totalScore
+    }
+
+
+
+
 }

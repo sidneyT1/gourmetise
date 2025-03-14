@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="UI.BakeryList"
+            android:name="com.example.appgourmetiseconcours.UI.BakeryList"
             android:exported="true"
             android:theme="@style/Theme.AppGourmetiseConcours" >
         </activity>
@@ -52,7 +52,7 @@
             android:theme="@style/Theme.AppGourmetiseConcours" >
         </activity>
         <activity
-            android:name="UI.EvaluationActivity"
+            android:name="com.example.appgourmetiseconcours.UI.EvaluationActivity"
             android:theme="@style/Theme.AppGourmetiseConcours" >
         </activity>
         <activity

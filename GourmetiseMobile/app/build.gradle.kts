@@ -59,6 +59,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation("androidx.compose.runtime:runtime:1.5.1")
+    implementation ("androidx.compose.ui:ui:1.4.0") // Vérifie la version
+    implementation ("androidx.compose.material3:material3:1.0.0") // Version de Material3
+    implementation ("androidx.compose.foundation:foundation:1.4.0") // Foundation de Compose
+    implementation ("androidx.compose.runtime:runtime:1.4.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

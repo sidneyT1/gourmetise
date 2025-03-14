@@ -7,10 +7,11 @@ import android.annotation.SuppressLint
 import com.example.appgourmetiseconcours.Business.Bakery
 import com.example.appgourmetiseconcours.BakeryHelper
 
-class BakeryDAO(context: Context) {
+class BakeryDAO(private val context: Context) {  // Conserver 'context' comme membre de la classe
     private val db: SQLiteDatabase = BakeryHelper(context).writableDatabase
 
 
+    // Insérer une boulangerie
     fun insertBakery(
         siren: String,
         name: String,
@@ -40,6 +41,7 @@ class BakeryDAO(context: Context) {
     }
 
 
+    // Vider la table des boulangeries
     fun clearAllBakeries() {
         db.delete("bakery", null, null)
     }
@@ -80,6 +82,7 @@ class BakeryDAO(context: Context) {
     }
 
 
+    // Mettre à jour une boulangerie (surtout pour mettre à jour le ticketNum)
     fun updateBakery(
         siren: String,
         name: String,
@@ -107,7 +110,7 @@ class BakeryDAO(context: Context) {
         db.update("bakery", values, "siren = ?", arrayOf(siren))
     }
 
-
+    // Obtenir le nom d'une boulangerie par son siren
     fun getBakeryNameBySiren(siren: String): String {
         val curseur = db.rawQuery(
             "SELECT name FROM bakery WHERE siren = ?",
@@ -124,12 +127,33 @@ class BakeryDAO(context: Context) {
         return name
     }
 
-
+    // Mettre à jour le numéro de ticket pour une boulangerie spécifique
     fun updateTicketNum(siren: String, ticketNum: String) {
         val values = ContentValues().apply {
             put("ticketNum", ticketNum)
         }
 
         db.update("bakery", values, "siren = ?", arrayOf(siren))
+    }
+
+    // Vérifier si la boulangerie a été évaluée
+    fun isBakeryEvaluated(bakerySiren: String): Boolean {
+        val cursor = db.rawQuery(
+            "SELECT COUNT(*) FROM note WHERE bakery_siren = ?",
+            arrayOf(bakerySiren)
+        )
+
+        var isEvaluated = false
+        if (cursor.moveToFirst()) {
+            isEvaluated = cursor.getInt(0) > 0
+        }
+        cursor.close()
+        return isEvaluated
+    }
+
+    // Récupérer le score moyen d'une boulangerie
+    fun getBakeryScore(bakerySiren: String): Int {
+        val noteDAO = NoteDAO(context)  // Utilisation du context passé dans le constructeur
+        return noteDAO.getBakeryScore(bakerySiren)
     }
 }

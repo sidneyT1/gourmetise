@@ -1,5 +1,5 @@
-// BakeryList.kt
 package com.example.appgourmetiseconcours.UI
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -17,13 +17,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.*
 import com.example.appgourmetiseconcours.DAO.BakeryDAO
 import com.example.appgourmetiseconcours.R
 import com.example.appgourmetiseconcours.UI.theme.AppGourmetiseConcoursTheme
-import kotlin.random.Random
-
-
-
+import com.example.appgourmetiseconcours.UI.EvaluationActivity
+import com.example.appgourmetiseconcours.UI.BakeryDetailActivity
 
 class BakeryList : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +32,13 @@ class BakeryList : ComponentActivity() {
             AppGourmetiseConcoursTheme {
                 val context = LocalContext.current
                 val bdd = BakeryDAO(context)
-                val lesBakeries = bdd.getAllBakeries()
+
+                var lesBakeries by remember { mutableStateOf(bdd.getAllBakeries()) }
+
+
+                LaunchedEffect(Unit) {
+                    lesBakeries = bdd.getAllBakeries()
+                }
 
                 Column(modifier = Modifier.fillMaxSize()) {
 
@@ -46,7 +51,6 @@ class BakeryList : ComponentActivity() {
                             .align(Alignment.CenterHorizontally)
                     )
 
-
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxSize()
@@ -54,17 +58,19 @@ class BakeryList : ComponentActivity() {
                     ) {
                         items(lesBakeries) { bakery ->
 
+                            val isEvaluated = bdd.isBakeryEvaluated(bakery.siren)
+                            val score = bdd.getBakeryScore(bakery.siren)
+
                             Card(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 8.dp)
                                     .clickable {
-                                        val ticketNum = generateTicketCode()
-                                        bdd.updateTicketNum(bakery.siren, ticketNum)
 
-                                        val intent = Intent(context, EvaluationActivity::class.java)
-                                        intent.putExtra("bakery_siren", bakery.siren)
-                                        intent.putExtra("ticket_num", ticketNum)
+                                        val intent = Intent(context, BakeryDetailActivity::class.java)
+                                        intent.putExtra("name", bakery.name)
+                                        intent.putExtra("address", "${bakery.street}, ${bakery.postcode} ${bakery.city}")
+                                        intent.putExtra("details", "Détails supplémentaires de la boulangerie")
                                         context.startActivity(intent)
                                     }
                             ) {
@@ -94,19 +100,28 @@ class BakeryList : ComponentActivity() {
                                             text = bakery.street + ", " + bakery.postcode + " " + bakery.city,
                                             fontSize = 17.sp,
                                         )
+                                        if (isEvaluated) {
+                                            Text(
+                                                text = "Score: $score/15",
+                                                fontSize = 14.sp,
+                                                color = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
                                     }
 
                                     Button(
                                         onClick = {
-                                            val ticketNum = generateTicketCode()
-                                            bdd.updateTicketNum(bakery.siren, ticketNum)
-                                            val intent = Intent(context, EvaluationActivity::class.java)
-                                            intent.putExtra("bakery_siren", bakery.siren)
-                                            intent.putExtra("ticket_num", ticketNum)
-                                            context.startActivity(intent)
-                                        }
+
+                                            if (!isEvaluated) {
+                                                val intent = Intent(context, EvaluationActivity::class.java)
+                                                intent.putExtra("bakery_siren", bakery.siren)
+                                                intent.putExtra("ticket_num", bakery.ticketNum ?: "")
+                                                context.startActivity(intent)
+                                            }
+                                        },
+                                        enabled = !isEvaluated
                                     ) {
-                                        Text(text = "Évaluer")
+                                        Text(text = if (isEvaluated) "Évaluée" else "Évaluer")
                                     }
                                 }
                             }
@@ -115,12 +130,5 @@ class BakeryList : ComponentActivity() {
                 }
             }
         }
-    }
-
-
-    private fun generateTicketCode(): String {
-        val prefix = "A"
-        val randomNum = Random.nextInt(1000, 9999)
-        return "$prefix$randomNum"
     }
 }
