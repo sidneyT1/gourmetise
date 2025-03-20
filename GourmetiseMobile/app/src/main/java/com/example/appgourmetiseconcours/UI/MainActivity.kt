@@ -194,17 +194,33 @@ fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
 
                 contestParams?.let {
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                    val startEvalDate: Date = dateFormat.parse(it.startEvaluation) ?: Date()
-                    val endEvalDate: Date = dateFormat.parse(it.endEvaluation) ?: Date()
+
+                    // Conversion des dates
+                    val startRegDate = dateFormat.parse(it.startRegistration) ?: Date()
+                    val endRegDate = dateFormat.parse(it.endRegistration) ?: Date()
+                    val startEvalDate = dateFormat.parse(it.startEvaluation) ?: Date()
+                    val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
+
+                    val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.FRENCH)
 
 
-                    val date = SimpleDateFormat("dd MMMM yyyy", Locale.FRENCH)
                     Text(
-                        text = "Du ${date.format(startEvalDate)} au ${date.format(endEvalDate)}",
+                        text = "📌 Période d'inscription : \nDu ${dateFormatter.format(startRegDate)} au ${dateFormatter.format(endRegDate)}",
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF37474F),
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+
+
+
+
+                    Text(
+                        text = "🗳️ Période d'évaluation : \nDu ${dateFormatter.format(startEvalDate)} au ${dateFormatter.format(endEvalDate)}",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF37474F),
+                        modifier = Modifier.padding(vertical = 8.dp)
                     )
                 }
 
@@ -212,12 +228,12 @@ fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
                     onClick = {
                         val dateActuelle = Date()
                         contestParams?.let {
-                            val startEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                .parse(it.startEvaluation) ?: Date()
-                            val endEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                .parse(it.endEvaluation) ?: Date()
+                            val startRegDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                .parse(it.startRegistration) ?: Date()
+                            val endRegDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                .parse(it.endRegistration) ?: Date()
 
-                            if (dateActuelle.before(startEvalDate) || dateActuelle.after(endEvalDate)) {
+                            if (dateActuelle.before(startRegDate) || dateActuelle.after(endRegDate)) {
                                 showAlert = true
                             } else {
                                 VoirParticipants()
@@ -237,7 +253,7 @@ fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
         AlertDialog(
             onDismissRequest = { showAlert = false },
             title = { Text(text = "Attention") },
-            text = { Text(text = "La période d'évaluation est terminée ou n'a pas encore commencé.") },
+            text = { Text(text = "La période d'inscription est terminée ou n'a pas encore commencé.") },
             confirmButton = {
                 Button(onClick = { showAlert = false }) {
                     Text("OK")
