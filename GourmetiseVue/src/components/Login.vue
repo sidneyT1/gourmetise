@@ -24,7 +24,7 @@ const login = async () => {
     router.push("/dashboard");
   } catch (error) {
     errorMessage.value =
-      error.response?.data?.message || "Erreur lors de la connexion.";
+      error.response?.data?.message || "Erreur lors de la connexion";
   }
 };
 </script>
