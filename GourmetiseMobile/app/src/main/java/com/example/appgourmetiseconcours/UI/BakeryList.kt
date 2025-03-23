@@ -27,6 +27,7 @@ import com.example.appgourmetiseconcours.UI.EvaluationActivity
 import com.example.appgourmetiseconcours.UI.BakeryDetailActivity
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.Toast
 
 class BakeryList : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,112 +41,145 @@ class BakeryList : ComponentActivity() {
 
                 var lesBakeries by remember { mutableStateOf(bdd.getAllBakeries()) }
                 var contestParams by remember { mutableStateOf<ContestParams?>(null) }
+                var totalEvaluations by remember { mutableStateOf(0) }
                 val dateActuelle = Date()
 
                 LaunchedEffect(Unit) {
                     lesBakeries = bdd.getAllBakeries()
                     contestParams = contestParamsDAO.getContestParams()
+                    totalEvaluations = bdd.getAllEvaluationsCount()  // Récupère le nombre total d'évaluations effectuées
                 }
 
-                Column(modifier = Modifier.fillMaxSize()) {
+                val evaluationActive = contestParams?.let {
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                    val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
+                    dateActuelle in dateActuelle..endEvalDate
+                } ?: false
 
+                Column(modifier = Modifier.fillMaxSize()) {
                     Text(
                         text = "Liste des Boulangeries Participantes",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
+                        fontSize = 18.sp,
                         modifier = Modifier
-                            .padding(16.dp)
+                            .padding(5.dp)
                             .align(Alignment.CenterHorizontally)
                     )
 
-                    LazyColumn(
+                    Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(horizontal = 16.dp)
+                            .padding(bottom = 80.dp)  // Assurez-vous que le bas de la Box laisse de l'espace pour le bouton
                     ) {
-                        items(lesBakeries) { bakery ->
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 10.dp)
+                        ) {
+                            items(lesBakeries) { bakery ->
+                                val isEvaluated = bdd.isBakeryEvaluated(bakery.siren)
+                                val score = bdd.getBakeryScore(bakery.siren)
 
-                            val isEvaluated = bdd.isBakeryEvaluated(bakery.siren)
-                            val score = bdd.getBakeryScore(bakery.siren)
+                                // Vérification des dates d'évaluation
+                                val evaluationActive = contestParams?.let {
+                                    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                    val startEvalDate = dateFormat.parse(it.startEvaluation) ?: Date()
+                                    val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
+                                    dateActuelle in startEvalDate..endEvalDate
+                                } ?: false
 
-                            // Vérification des dates d'évaluation
-                            val evaluationActive = contestParams?.let {
-                                val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                val startEvalDate = dateFormat.parse(it.startEvaluation) ?: Date()
-                                val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
-                                dateActuelle in startEvalDate..endEvalDate
-                            } ?: false
-
-                            Card(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp)
-                                    .clickable {
-                                        val intent = Intent(context, BakeryDetailActivity::class.java)
-                                        intent.putExtra("name", bakery.name)
-                                        intent.putExtra("address", "${bakery.street}, ${bakery.postcode} ${bakery.city}")
-                                        intent.putExtra("details", "Détails supplémentaires de la boulangerie")
-                                        context.startActivity(intent)
-                                    }
-                            ) {
-                                Row(
+                                Card(
                                     modifier = Modifier
-                                        .padding(16.dp)
-                                        .fillMaxWidth(),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Image(
-                                        painter = painterResource(id = R.drawable.logogourmetise),
-                                        contentDescription = "Logo Gourmetise",
-                                        modifier = Modifier
-                                            .size(64.dp)
-                                            .padding(end = 16.dp)
-                                    )
-                                    Column(
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Text(
-                                            text = bakery.name,
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            modifier = Modifier.padding(bottom = 8.dp)
-                                        )
-                                        Text(
-                                            text = bakery.street + ", " + bakery.postcode + " " + bakery.city,
-                                            fontSize = 17.sp,
-                                        )
-                                        if (isEvaluated) {
-                                            Text(
-                                                text = "Score: $score/15",
-                                                fontSize = 14.sp,
-                                                color = MaterialTheme.colorScheme.primary
-                                            )
+                                        .fillMaxWidth()
+                                        .padding(vertical = 8.dp)
+                                        .clickable {
+                                            val intent = Intent(context, BakeryDetailActivity::class.java)
+                                            intent.putExtra("name", bakery.name)
+                                            intent.putExtra("address", "${bakery.street}, ${bakery.postcode} ${bakery.city}")
+                                            intent.putExtra("details", "Détails supplémentaires de la boulangerie")
+                                            context.startActivity(intent)
                                         }
-                                    }
-
-                                    Button(
-                                        onClick = {
-                                            if (evaluationActive && !isEvaluated) {
-                                                val intent = Intent(context, EvaluationActivity::class.java)
-                                                intent.putExtra("bakery_siren", bakery.siren)
-                                                intent.putExtra("ticket_num", bakery.ticketNum ?: "")
-                                                context.startActivity(intent)
-                                            }
-                                        },
-                                        enabled = evaluationActive && !isEvaluated
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .padding(16.dp)
+                                            .fillMaxWidth(),
+                                        verticalAlignment = Alignment.CenterVertically
                                     ) {
-                                        Text(text = when {
-                                            !evaluationActive -> "Hors période"
-                                            isEvaluated -> "Évaluée"
-                                            else -> "Évaluer"
-                                        })
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logogourmetise),
+                                            contentDescription = "Logo Gourmetise",
+                                            modifier = Modifier
+                                                .size(64.dp)
+                                                .padding(end = 16.dp)
+                                        )
+                                        Column(
+                                            modifier = Modifier.weight(1f)
+                                        ) {
+                                            Text(
+                                                text = bakery.name,
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                modifier = Modifier.padding(bottom = 8.dp)
+                                            )
+                                            Text(
+                                                text = bakery.street + ", " + bakery.postcode + " " + bakery.city,
+                                                fontSize = 17.sp,
+                                            )
+                                            if (isEvaluated) {
+                                                Text(
+                                                    text = "Score: $score/15",
+                                                    fontSize = 14.sp,
+                                                    color = MaterialTheme.colorScheme.primary
+                                                )
+                                            }
+                                        }
+
+                                        Button(
+                                            onClick = {
+                                                if (evaluationActive && !isEvaluated) {
+                                                    val intent = Intent(context, EvaluationActivity::class.java)
+                                                    intent.putExtra("bakery_siren", bakery.siren)
+                                                    intent.putExtra("ticket_num", bakery.ticketNum ?: "")
+                                                    context.startActivity(intent)
+                                                }
+                                            },
+                                            enabled = evaluationActive && !isEvaluated
+                                        ) {
+                                            Text(text = when {
+                                                !evaluationActive -> "Hors période"
+                                                isEvaluated -> "Évaluée"
+                                                else -> "Évaluer"
+                                            })
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+
+                    // Bouton d'exportation des évaluations
+                    Button(
+                        onClick = {
+                            if (totalEvaluations < 5) {
+                                Toast.makeText(context, "Vous devez effectuer au moins 5 évaluations pour envoyer.", Toast.LENGTH_SHORT).show()
+                            } else if (!evaluationActive) {
+                                Toast.makeText(context, "La période d'évaluation est terminée.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "Évaluations envoyées avec succès.", Toast.LENGTH_SHORT).show()
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        enabled = totalEvaluations >= 5 && evaluationActive
+                    ) {
+                        Text(text = "Exporter les Évaluations")
+                    }
                 }
+
             }
         }
     }
 }
+

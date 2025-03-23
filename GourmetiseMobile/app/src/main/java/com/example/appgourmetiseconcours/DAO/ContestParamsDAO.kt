@@ -35,7 +35,9 @@ class ContestParamsDAO(context: Context) {
 
     @SuppressLint("Range")
     fun getContestParams(): ContestParams? {
-        val cursor = db.rawQuery("SELECT * FROM contest_params WHERE id = 1", null)
+
+        val cursor = db.rawQuery("SELECT * FROM contest_params ORDER BY id DESC LIMIT 1", null)
+
         return if (cursor.moveToFirst()) {
             val title = cursor.getString(cursor.getColumnIndex("title"))
             val description = cursor.getString(cursor.getColumnIndex("description"))

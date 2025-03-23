@@ -21,6 +21,11 @@ import com.example.appgourmetiseconcours.DAO.NoteDAO
 import com.example.appgourmetiseconcours.DAO.CriteriaDAO
 import com.example.appgourmetiseconcours.DAO.BakeryDAO
 import com.example.appgourmetiseconcours.R
+import android.content.Intent
+import java.text.SimpleDateFormat
+import java.util.*
+
+
 
 class EvaluationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +43,7 @@ class EvaluationActivity : ComponentActivity() {
             var isTicketValid by remember { mutableStateOf(false) }
 
             val context = LocalContext.current
+            val bdd = BakeryDAO(context)
 
             LaunchedEffect(bakerySiren) {
                 if (bakerySiren.isNotEmpty()) {
@@ -99,9 +105,12 @@ class EvaluationActivity : ComponentActivity() {
                         TextField(
                             value = note1,
                             onValueChange = {
-
-                                if (it.all { char -> char.isDigit() }) {
+                                // Validation pour assurer que la note est entre 1 et 5
+                                val newValue = it.toIntOrNull()
+                                if (newValue != null && newValue in 1..5) {
                                     note1 = it
+                                } else if (it.isEmpty() || it.toIntOrNull() == null) {
+                                    note1 = ""  // Si la valeur est vide ou invalide, on réinitialise la note
                                 }
                             },
                             keyboardOptions = KeyboardOptions.Default.copy(
@@ -127,9 +136,12 @@ class EvaluationActivity : ComponentActivity() {
                         TextField(
                             value = note2,
                             onValueChange = {
-
-                                if (it.all { char -> char.isDigit() }) {
+                                // Validation pour assurer que la note est entre 1 et 5
+                                val newValue = it.toIntOrNull()
+                                if (newValue != null && newValue in 1..5) {
                                     note2 = it
+                                } else if (it.isEmpty() || it.toIntOrNull() == null) {
+                                    note2 = ""  // Si la valeur est vide ou invalide, on réinitialise la note
                                 }
                             },
                             keyboardOptions = KeyboardOptions.Default.copy(
@@ -155,9 +167,12 @@ class EvaluationActivity : ComponentActivity() {
                         TextField(
                             value = note3,
                             onValueChange = {
-
-                                if (it.all { char -> char.isDigit() }) {
+                                // Validation pour assurer que la note est entre 1 et 5
+                                val newValue = it.toIntOrNull()
+                                if (newValue != null && newValue in 1..5) {
                                     note3 = it
+                                } else if (it.isEmpty() || it.toIntOrNull() == null) {
+                                    note3 = ""  // Si la valeur est vide ou invalide, on réinitialise la note
                                 }
                             },
                             keyboardOptions = KeyboardOptions.Default.copy(
@@ -172,41 +187,58 @@ class EvaluationActivity : ComponentActivity() {
                         Text(" / 5", modifier = Modifier.padding(start = 8.dp))
                     }
 
+
                     Button(
                         onClick = {
-                            val noteDAO = NoteDAO(context)
-                            val criteriaDAO = CriteriaDAO(context)
+
                             val bakeryDAO = BakeryDAO(context)
+                            if (bakeryDAO.isTicketUsed(ticketCode)) {
 
-                            val accueilId = criteriaDAO.getCriteriaIdByTitle("accueil")
-                                ?: criteriaDAO.insertCriteria("accueil")
-                            val produitsId = criteriaDAO.getCriteriaIdByTitle("produits")
-                                ?: criteriaDAO.insertCriteria("produits")
-                            val presentationId = criteriaDAO.getCriteriaIdByTitle("présentation")
-                                ?: criteriaDAO.insertCriteria("présentation")
+                                Toast.makeText(context, "Ce code ticket a déjà été utilisé.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                val noteDAO = NoteDAO(context)
+                                val criteriaDAO = CriteriaDAO(context)
 
-                            val value1 = note1.toIntOrNull() ?: 0
-                            val value2 = note2.toIntOrNull() ?: 0
-                            val value3 = note3.toIntOrNull() ?: 0
 
-                            if (bakerySiren.isNotEmpty() && ticketCode.isNotEmpty()) {
+                                val accueilId = criteriaDAO.getCriteriaIdByTitle("accueil")
+                                    ?: criteriaDAO.insertCriteria("accueil")
+                                val produitsId = criteriaDAO.getCriteriaIdByTitle("produits")
+                                    ?: criteriaDAO.insertCriteria("produits")
+                                val presentationId = criteriaDAO.getCriteriaIdByTitle("présentation")
+                                    ?: criteriaDAO.insertCriteria("présentation")
+
+
+                                val value1 = note1.toIntOrNull() ?: 0
+                                val value2 = note2.toIntOrNull() ?: 0
+                                val value3 = note3.toIntOrNull() ?: 0
+
+
                                 noteDAO.insertNote(value1, bakerySiren, accueilId)
                                 noteDAO.insertNote(value2, bakerySiren, produitsId)
                                 noteDAO.insertNote(value3, bakerySiren, presentationId)
 
-                                bakeryDAO.updateTicketNum(bakerySiren, ticketCode)
 
-                                Toast.makeText(context, "Notes soumises avec succès!", Toast.LENGTH_SHORT).show()
+                                val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+                                val evaluationDate = dateFormat.format(Date())
 
-                                finish()
-                            } else {
-                                Toast.makeText(context, "Erreur : Boulangerie ou code ticket non spécifiés.", Toast.LENGTH_SHORT).show()
+
+                                bakeryDAO.updateBakeryEvaluation(bakerySiren, ticketCode, evaluationDate)
+
+                                Toast.makeText(context, "Les notes ont été prises en compte", Toast.LENGTH_SHORT).show()
+
+
+                                val intent = Intent(context, BakeryList::class.java)
+                                context.startActivity(intent)
                             }
-                        },
-                        modifier = Modifier.padding(top = 16.dp)
+                        }
                     ) {
-                        Text("Soumettre les Notes")
+                        Text("Soumettre")
                     }
+
+
+
+                } else {
+                    Text("Code ticket invalide", color = MaterialTheme.colorScheme.error)
                 }
             }
         }

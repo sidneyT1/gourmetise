@@ -82,7 +82,7 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
     }
 
 
-    // Mettre à jour une boulangerie (surtout pour mettre à jour le ticketNum)
+
     fun updateBakery(
         siren: String,
         name: String,
@@ -110,7 +110,7 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
         db.update("bakery", values, "siren = ?", arrayOf(siren))
     }
 
-    // Obtenir le nom d'une boulangerie par son siren
+
     fun getBakeryNameBySiren(siren: String): String {
         val curseur = db.rawQuery(
             "SELECT name FROM bakery WHERE siren = ?",
@@ -127,7 +127,7 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
         return name
     }
 
-    // Mettre à jour le numéro de ticket pour une boulangerie spécifique
+
     fun updateTicketNum(siren: String, ticketNum: String) {
         val values = ContentValues().apply {
             put("ticketNum", ticketNum)
@@ -136,7 +136,7 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
         db.update("bakery", values, "siren = ?", arrayOf(siren))
     }
 
-    // Vérifier si la boulangerie a été évaluée
+
     fun isBakeryEvaluated(bakerySiren: String): Boolean {
         val cursor = db.rawQuery(
             "SELECT COUNT(*) FROM note WHERE bakery_siren = ?",
@@ -151,9 +151,48 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
         return isEvaluated
     }
 
-    // Récupérer le score moyen d'une boulangerie
+
     fun getBakeryScore(bakerySiren: String): Int {
-        val noteDAO = NoteDAO(context)  // Utilisation du context passé dans le constructeur
+        val noteDAO = NoteDAO(context)
         return noteDAO.getBakeryScore(bakerySiren)
     }
+
+    fun updateBakeryEvaluation(
+        siren: String,
+        ticketNum: String,
+        evaluationDate: String
+    ) {
+        val values = ContentValues().apply {
+            put("ticketNum", ticketNum)
+            put("evaluationDate", evaluationDate)
+        }
+
+        db.update("bakery", values, "siren = ?", arrayOf(siren))
+    }
+
+    fun isTicketUsed(ticketNum: String): Boolean {
+        val cursor = db.rawQuery(
+            "SELECT COUNT(*) FROM bakery WHERE ticketNum = ?",
+            arrayOf(ticketNum)
+        )
+
+        var isUsed = false
+        if (cursor.moveToFirst()) {
+            isUsed = cursor.getInt(0) > 0
+        }
+        cursor.close()
+        return isUsed
+    }
+    fun getAllEvaluationsCount(): Int {
+        val cursor = db.rawQuery("SELECT COUNT(*) FROM note", null)
+        var count = 0
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0)
+        }
+        cursor.close()
+        return count
+    }
+
+
+
 }

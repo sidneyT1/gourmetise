@@ -11,6 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9fa69a47-26b6-4924-b3b6-0902f31e3ee2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/DAO/BakeryDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/DAO/BakeryDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/DAO/ContestParamsDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/DAO/ContestParamsDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/UI/BakeryList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/UI/BakeryList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/UI/EvaluationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/UI/EvaluationActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
