@@ -11,37 +11,37 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
-class RegisterController extends AbstractController
+class LoginController extends AbstractController
 {
-    #[Route('/api/register', name: 'api_register', methods: ['POST'])]
-    public function register(
-        Request $request, 
-        EntityManagerInterface $entityManager, 
+    #[Route('/api/login', name: 'api_login', methods: ['POST'])]
+    public function login(
+        Request $request,
+        EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $passwordHasher,
         JWTTokenManagerInterface $jwtManager
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
-        
-     
+
         if (!isset($data['mail']) || !isset($data['password'])) {
             return new JsonResponse(["message" => "Email et mot de passe requis."], 400);
         }
 
-        $user = new User();
-        $user->setMail($data['mail']);
-        $user->setPassword($passwordHasher->hashPassword($user, $data['password']));
-        $user->setRole("ROLE_PARTICIPANT"); // Stocke directement une chaîne de caractères
+        $user = $entityManager->getRepository(User::class)->findOneBy(['mail' => $data['mail']]);
 
+        if (!$user || !$passwordHasher->isPasswordValid($user, $data['password'])) {
+            return new JsonResponse(["message" => "Identifiants incorrects."], 401);
+        }
 
-
-        $user->setCreatedAt(new \DateTime());
-
-        $entityManager->persist($user);
-        $entityManager->flush();
-
-        
         $token = $jwtManager->create($user);
 
-        return new JsonResponse(["message" => "Utilisateur créé avec succès.", "token" => $token], 201);
+        return new JsonResponse([
+            "message" => "Authentification réussie.",
+            "token" => $token,
+            "user" => [
+                "id" => $user->getId(),
+                "mail" => $user->getMail(),
+                "role" => $user->getRole(),
+            ]
+        ], 200);
     }
 }

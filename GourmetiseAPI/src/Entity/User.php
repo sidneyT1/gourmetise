@@ -28,8 +28,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\Column]
-    private array $roles = [];
+    #[ORM\Column(length: 30)]
+    private ?string $role = null;
 
     public function getId(): ?int
     {
@@ -85,17 +85,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->mail; 
     }
 
-    public function getRoles(): array
+        public function getRole(): string
     {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_USER'; 
-        return array_unique($roles);
+        return $this->role ?? 'ROLE_USER'; // Si aucun rôle n'est défini, retourne 'ROLE_USER' par défaut
     }
 
-    public function setRoles(array $roles): static
+    public function setRole(string $role): static
     {
-        $this->roles = $roles;
+        $this->role = $role;
         return $this;
+    }
+    public function getRoles(): array
+    {
+        return [$this->getRole()]; // Retourne un tableau contenant un seul rôle
     }
 
     public function eraseCredentials(): void
