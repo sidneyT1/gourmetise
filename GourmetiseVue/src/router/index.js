@@ -18,13 +18,13 @@ const router = createRouter({
             path: '/ContestParams',
             name: 'ContestParams',
             component: ContestParams,
-            meta: { requiresAuth: true } // Protection de la route
+            meta: { requiresAuth: true } 
         },
         {
             path: '/Formulaire',
             name: 'Formulaire',
             component: Formulaire,
-            meta: { requiresAuth: true } // Protection de la route
+            meta: { requiresAuth: true } 
         },
         {
             path: '/ConditionsUtilisation',
@@ -44,12 +44,11 @@ const router = createRouter({
     ],
 });
 
-// Vérification de l'authentification avant chaque navigation
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('access_token');
 
     if (to.meta.requiresAuth && !token) {
-        next('/Login'); // Redirection si pas de token
+        next('/Login'); 
     } else {
         next();
     }

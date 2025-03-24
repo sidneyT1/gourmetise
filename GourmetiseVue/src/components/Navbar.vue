@@ -2,7 +2,7 @@
   <v-app-bar app color="primary" dark>
     <v-row align="center" class="flex-grow-1">
       <v-col class="d-flex" cols="auto">
-        <img src="../assets/logo.png" alt="Logo La Gourmetise" class="logo"/>
+        <img src="../assets/logo.png" alt="Logo La Gourmetise" class="logo" />
       </v-col>
 
       <v-col class="d-flex" cols="auto">
@@ -28,12 +28,34 @@
           Afficher résultats
         </router-link>
       </v-btn>
+
+     
+      <v-btn v-if="isLoggedIn" @click="logout" color="red">
+        Déconnexion
+      </v-btn>
     </v-row>
   </v-app-bar>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+
+const isLoggedIn = ref(localStorage.getItem('access_token') !== null);
+
+
+watch(() => localStorage.getItem('access_token'), (newValue) => {
+  isLoggedIn.value = newValue !== null;
+});
+
+
+const logout = () => {
+  localStorage.removeItem('access_token'); 
+  router.push('/Login'); 
+};
 </script>
 
 <style scoped>

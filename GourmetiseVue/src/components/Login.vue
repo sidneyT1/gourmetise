@@ -12,15 +12,14 @@ const errorMessage = ref("");
 const login = async () => {
   try {
     const response = await api.post("/login", {
-      mail: email.value, // Symfony attend "mail" comme clé
+      mail: email.value, 
       password: password.value,
     });
 
-    // Stocker le token JWT
+
     const token = response.data.token;
     localStorage.setItem("access_token", token);
 
-    // Redirection vers le tableau de bord après connexion réussie
     router.push("/dashboard");
   } catch (error) {
     errorMessage.value =
