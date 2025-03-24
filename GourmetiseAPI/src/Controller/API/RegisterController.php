@@ -30,7 +30,7 @@ class RegisterController extends AbstractController
         $user = new User();
         $user->setMail($data['mail']);
         $user->setPassword($passwordHasher->hashPassword($user, $data['password']));
-        $user->setRole("ROLE_PARTICIPANT"); // Stocke directement une chaîne de caractères
+        $user->setRole("Participant"); 
 
 
 
