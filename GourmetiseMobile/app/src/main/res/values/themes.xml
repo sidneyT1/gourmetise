@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.AppGourmetiseConcours" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Thème personnalisé -->
+    <style name="Theme.AppGourmetiseConcours" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Fond gris clair pour éviter trop de blanc -->
+        <item name="android:windowBackground">@color/background</item>
+    </style>
 </resources>

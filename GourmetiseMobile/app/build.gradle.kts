@@ -52,26 +52,18 @@ android {
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-
-    implementation("androidx.compose.material3:material3:1.1.0")
+    implementation("androidx.compose.material3:material3:1.1.0") // Gardez la version la plus récente
+    implementation("androidx.compose.ui:ui:1.5.1") // Gardez la version la plus récente
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
-    implementation("androidx.compose.ui:ui:1.5.1")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation("androidx.compose.runtime:runtime:1.5.1")
-    implementation ("androidx.compose.ui:ui:1.4.0") // Vérifie la version
-    implementation ("androidx.compose.material3:material3:1.0.0") // Version de Material3
-    implementation ("androidx.compose.foundation:foundation:1.4.0") // Foundation de Compose
-    implementation ("androidx.compose.runtime:runtime:1.4.0")
+    implementation("androidx.compose.foundation:foundation:1.5.1") // Mettez à jour à la version la plus récente
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

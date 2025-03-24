@@ -1,5 +1,7 @@
 package com.example.appgourmetiseconcours.UI
 
+import androidx.compose.foundation.background
+import androidx.compose.ui.graphics.Color
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,6 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 
+
 class BakeryList : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +50,7 @@ class BakeryList : ComponentActivity() {
                 LaunchedEffect(Unit) {
                     lesBakeries = bdd.getAllBakeries()
                     contestParams = contestParamsDAO.getContestParams()
-                    totalEvaluations = bdd.getAllEvaluationsCount()  // Récupère le nombre total d'évaluations effectuées
+                    totalEvaluations = bdd.getAllEvaluationsCount()
                 }
 
                 val evaluationActive = contestParams?.let {
@@ -56,109 +59,120 @@ class BakeryList : ComponentActivity() {
                     dateActuelle in dateActuelle..endEvalDate
                 } ?: false
 
-                Column(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background)
+                ) {
                     Text(
                         text = "Liste des Boulangeries Participantes",
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
+                        color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier
                             .padding(5.dp)
                             .align(Alignment.CenterHorizontally)
                     )
 
-                    Box(
+                    LazyColumn(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(bottom = 80.dp)  // Assurez-vous que le bas de la Box laisse de l'espace pour le bouton
+                            .weight(1f) // Utiliser `weight` pour occuper l'espace disponible
+                            .padding(horizontal = 10.dp)
+                            .background(MaterialTheme.colorScheme.background)
                     ) {
-                        LazyColumn(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(horizontal = 10.dp)
-                        ) {
-                            items(lesBakeries) { bakery ->
-                                val isEvaluated = bdd.isBakeryEvaluated(bakery.siren)
-                                val score = bdd.getBakeryScore(bakery.siren)
+                        items(lesBakeries) { bakery ->
+                            val isEvaluated = bdd.isBakeryEvaluated(bakery.siren)
+                            val score = bdd.getBakeryScore(bakery.siren)
 
-                                // Vérification des dates d'évaluation
-                                val evaluationActive = contestParams?.let {
-                                    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                    val startEvalDate = dateFormat.parse(it.startEvaluation) ?: Date()
-                                    val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
-                                    dateActuelle in startEvalDate..endEvalDate
-                                } ?: false
+                            val evaluationActive = contestParams?.let {
+                                val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                val startEvalDate = dateFormat.parse(it.startEvaluation) ?: Date()
+                                val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
+                                dateActuelle in startEvalDate..endEvalDate
+                            } ?: false
 
-                                Card(
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp)
+                                    .clickable {
+                                        val intent = Intent(context, BakeryDetailActivity::class.java)
+                                        intent.putExtra("name", bakery.name)
+                                        intent.putExtra("address", "${bakery.street}, ${bakery.postcode} ${bakery.city}")
+                                        intent.putExtra("details", "Détails supplémentaires de la boulangerie")
+                                        context.startActivity(intent)
+                                    }
+                                    .background(MaterialTheme.colorScheme.surface)
+                            ) {
+                                Row(
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(vertical = 8.dp)
-                                        .clickable {
-                                            val intent = Intent(context, BakeryDetailActivity::class.java)
-                                            intent.putExtra("name", bakery.name)
-                                            intent.putExtra("address", "${bakery.street}, ${bakery.postcode} ${bakery.city}")
-                                            intent.putExtra("details", "Détails supplémentaires de la boulangerie")
-                                            context.startActivity(intent)
-                                        }
+                                        .padding(16.dp)
+                                        .fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Row(
+                                    Image(
+                                        painter = painterResource(id = R.drawable.logogourmetise),
+                                        contentDescription = "Logo Gourmetise",
                                         modifier = Modifier
-                                            .padding(16.dp)
-                                            .fillMaxWidth(),
-                                        verticalAlignment = Alignment.CenterVertically
+                                            .size(64.dp)
+                                            .padding(end = 16.dp)
+                                    )
+                                    Column(
+                                        modifier = Modifier.weight(1f)
                                     ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.logogourmetise),
-                                            contentDescription = "Logo Gourmetise",
-                                            modifier = Modifier
-                                                .size(64.dp)
-                                                .padding(end = 16.dp)
+                                        Text(
+                                            text = bakery.name,
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = MaterialTheme.colorScheme.onSurface,
+                                            modifier = Modifier.padding(bottom = 8.dp)
                                         )
-                                        Column(
-                                            modifier = Modifier.weight(1f)
-                                        ) {
+                                        Text(
+                                            text = bakery.street + ", " + bakery.postcode + " " + bakery.city,
+                                            fontSize = 17.sp,
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                        if (isEvaluated) {
                                             Text(
-                                                text = bakery.name,
-                                                fontSize = 18.sp,
-                                                fontWeight = FontWeight.Bold,
-                                                modifier = Modifier.padding(bottom = 8.dp)
+                                                text = "Score: $score/15",
+                                                fontSize = 14.sp,
+                                                color = MaterialTheme.colorScheme.primary
                                             )
-                                            Text(
-                                                text = bakery.street + ", " + bakery.postcode + " " + bakery.city,
-                                                fontSize = 17.sp,
-                                            )
-                                            if (isEvaluated) {
-                                                Text(
-                                                    text = "Score: $score/15",
-                                                    fontSize = 14.sp,
-                                                    color = MaterialTheme.colorScheme.primary
-                                                )
-                                            }
                                         }
+                                    }
 
-                                        Button(
-                                            onClick = {
-                                                if (evaluationActive && !isEvaluated) {
-                                                    val intent = Intent(context, EvaluationActivity::class.java)
-                                                    intent.putExtra("bakery_siren", bakery.siren)
-                                                    intent.putExtra("ticket_num", bakery.ticketNum ?: "")
-                                                    context.startActivity(intent)
-                                                }
-                                            },
-                                            enabled = evaluationActive && !isEvaluated
-                                        ) {
-                                            Text(text = when {
+                                    Button(
+                                        onClick = {
+                                            if (evaluationActive && !isEvaluated) {
+                                                val intent = Intent(context, EvaluationActivity::class.java)
+                                                intent.putExtra("bakery_siren", bakery.siren)
+                                                intent.putExtra("ticket_num", bakery.ticketNum ?: "")
+                                                context.startActivity(intent)
+                                            }
+                                        },
+                                        enabled = evaluationActive && !isEvaluated,
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = MaterialTheme.colorScheme.primary
+                                        )
+                                    ) {
+                                        Text(
+                                            text = when {
                                                 !evaluationActive -> "Hors période"
                                                 isEvaluated -> "Évaluée"
                                                 else -> "Évaluer"
-                                            })
-                                        }
+                                            },
+                                            color = MaterialTheme.colorScheme.onPrimary
+                                        )
                                     }
                                 }
+
                             }
                         }
                     }
 
-                    // Bouton d'exportation des évaluations
+
+                    Spacer(modifier = Modifier.weight(1f))
+
                     Button(
                         onClick = {
                             if (totalEvaluations < 5) {
@@ -172,14 +186,18 @@ class BakeryList : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
-                        enabled = totalEvaluations >= 5 && evaluationActive
+                        enabled = totalEvaluations >= 5 && evaluationActive,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary
+                        )
                     ) {
-                        Text(text = "Exporter les Évaluations")
+                        Text(
+                            text = "Exporter les Évaluations",
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
                     }
                 }
-
             }
         }
     }
 }
-
