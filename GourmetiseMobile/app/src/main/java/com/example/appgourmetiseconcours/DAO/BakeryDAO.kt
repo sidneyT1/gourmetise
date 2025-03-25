@@ -1,5 +1,6 @@
 package com.example.appgourmetiseconcours.DAO
 
+import com.example.appgourmetiseconcours.Business.Evaluation
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -7,11 +8,11 @@ import android.annotation.SuppressLint
 import com.example.appgourmetiseconcours.Business.Bakery
 import com.example.appgourmetiseconcours.BakeryHelper
 
-class BakeryDAO(private val context: Context) {  // Conserver 'context' comme membre de la classe
+class BakeryDAO(private val context: Context) {
     private val db: SQLiteDatabase = BakeryHelper(context).writableDatabase
 
 
-    // Insérer une boulangerie
+
     fun insertBakery(
         siren: String,
         name: String,
@@ -41,12 +42,12 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
     }
 
 
-    // Vider la table des boulangeries
+
     fun clearAllBakeries() {
         db.delete("bakery", null, null)
     }
 
-    // Obtenir toutes les boulangeries
+
     @SuppressLint("Range")
     fun getAllBakeries(): MutableList<Bakery> {
         val lesBakeries = mutableListOf<Bakery>()
@@ -190,7 +191,32 @@ class BakeryDAO(private val context: Context) {  // Conserver 'context' comme me
             count = cursor.getInt(0)
         }
         cursor.close()
-        return count
+
+
+        val groupCount = count / 3
+
+        return groupCount
+    }
+
+    fun exportEvaluations() {
+        val noteDAO = NoteDAO(context)
+        val evaluations = noteDAO.getAllNotes()  // Récupérer toutes les évaluations depuis la table `note`.
+
+        // Insérer chaque évaluation dans la table `evaluation`
+        for (evaluation in evaluations) {
+            insertEvaluation(evaluation)
+        }
+    }
+
+    private fun insertEvaluation(evaluation: Evaluation) {
+        val values = ContentValues().apply {
+            put("bakery_siren", evaluation.bakery_siren)
+            put("score", evaluation.score)
+            put("evaluation_date", evaluation.evaluation_date)
+        }
+
+        // Insertion dans la table `evaluation`
+        db.insert("evaluation", null, values)
     }
 
 
