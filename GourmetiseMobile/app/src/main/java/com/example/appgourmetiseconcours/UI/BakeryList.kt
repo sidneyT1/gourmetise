@@ -76,7 +76,7 @@ class BakeryList : ComponentActivity() {
 
                     LazyColumn(
                         modifier = Modifier
-                            .weight(1f) // Utiliser `weight` pour occuper l'espace disponible
+                            .weight(1f)
                             .padding(horizontal = 10.dp)
                             .background(MaterialTheme.colorScheme.background)
                     ) {
@@ -170,9 +170,6 @@ class BakeryList : ComponentActivity() {
                         }
                     }
 
-
-                    Spacer(modifier = Modifier.weight(1f))
-
                     Button(
                         onClick = {
                             if (totalEvaluations < 5) {
@@ -197,6 +194,7 @@ class BakeryList : ComponentActivity() {
                         )
                     }
                 }
+
             }
         }
     }
