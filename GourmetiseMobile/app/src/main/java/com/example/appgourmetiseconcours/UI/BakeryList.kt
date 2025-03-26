@@ -177,6 +177,7 @@ class BakeryList : ComponentActivity() {
                             } else if (!evaluationActive) {
                                 Toast.makeText(context, "La période d'évaluation est terminée.", Toast.LENGTH_SHORT).show()
                             } else {
+                                bdd.exportEvaluationsToServer()
                                 Toast.makeText(context, "Évaluations envoyées avec succès.", Toast.LENGTH_SHORT).show()
                             }
                         },

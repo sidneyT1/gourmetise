@@ -218,7 +218,8 @@ class EvaluationActivity : ComponentActivity() {
                                 noteDAO.insertNote(value3, bakerySiren, presentationId)
 
 
-                                val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+                                val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+
                                 val evaluationDate = dateFormat.format(Date())
 
 

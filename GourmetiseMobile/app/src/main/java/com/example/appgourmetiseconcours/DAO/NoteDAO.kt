@@ -23,22 +23,31 @@ class NoteDAO(context: Context) {
 
     fun getAllNotes(): MutableList<Note> {
         val notes = mutableListOf<Note>()
-        val cursor = db.rawQuery(
-            "SELECT bakery_siren, criteria_id, value FROM note", null
-        )
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast) {
-            val note = Note(
-                bakerySiren = cursor.getString(cursor.getColumnIndex("bakery_siren")),
-                criteriaId = cursor.getInt(cursor.getColumnIndex("criteria_id")),
-                value = cursor.getInt(cursor.getColumnIndex("value"))
-            )
-            notes.add(note)
-            cursor.moveToNext()
+        val cursor = db.rawQuery("SELECT bakery_siren, criteria_id, value FROM note", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val bakerySirenIndex = cursor.getColumnIndex("bakery_siren")
+                val criteriaIdIndex = cursor.getColumnIndex("criteria_id")
+                val valueIndex = cursor.getColumnIndex("value")
+
+                if (bakerySirenIndex != -1 && criteriaIdIndex != -1 && valueIndex != -1) {
+                    val note = Note(
+                        bakerySiren = cursor.getString(bakerySirenIndex),
+                        criteriaId = cursor.getInt(criteriaIdIndex),
+                        value = cursor.getInt(valueIndex)
+                    )
+                    notes.add(note)
+                } else {
+                    println("Erreur : Une ou plusieurs colonnes manquent dans la requête SQL.")
+                }
+            } while (cursor.moveToNext())
         }
+
         cursor.close()
         return notes
     }
+
 
 
     fun clearAllNotes() {

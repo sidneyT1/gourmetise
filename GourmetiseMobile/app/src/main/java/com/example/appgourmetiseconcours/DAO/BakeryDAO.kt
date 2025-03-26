@@ -7,6 +7,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.annotation.SuppressLint
 import com.example.appgourmetiseconcours.Business.Bakery
 import com.example.appgourmetiseconcours.BakeryHelper
+import okhttp3.*
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.IOException
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+
 
 class BakeryDAO(private val context: Context) {
     private val db: SQLiteDatabase = BakeryHelper(context).writableDatabase
@@ -198,15 +204,108 @@ class BakeryDAO(private val context: Context) {
         return groupCount
     }
 
-    fun exportEvaluations() {
+    fun exportEvaluationsToServer() {
         val noteDAO = NoteDAO(context)
-        val evaluations = noteDAO.getAllNotes()  // Récupérer toutes les évaluations depuis la table `note`.
+        val evaluations = noteDAO.getAllNotes()
 
-        // Insérer chaque évaluation dans la table `evaluation`
-        for (evaluation in evaluations) {
-            insertEvaluation(evaluation)
+        if (evaluations.isEmpty()) {
+            return
         }
+
+        // Utilisation d'un Map pour agréger les scores des boulangeries
+        val bakeryScores = mutableMapOf<String, Int>()
+        val bakeryDetails = mutableMapOf<String, Pair<String, String>>()  // Map pour stocker les détails de la boulangerie (ticketNum, evaluationDate)
+
+        // Calcul des scores totaux par boulangerie
+        for (evaluation in evaluations) {
+            val bakerySiren = evaluation.bakerySiren
+
+            // Ajouter ou mettre à jour la somme des scores pour la boulangerie
+            val currentScore = bakeryScores[bakerySiren] ?: 0
+            bakeryScores[bakerySiren] = currentScore + evaluation.value
+
+            // Récupérer les détails de la boulangerie (ticketNum, evaluationDate)
+            val (ticketNum, evaluationDate) = getTicketAndDateBySiren(bakerySiren)
+            bakeryDetails[bakerySiren] = Pair(ticketNum ?: "", evaluationDate ?: "")
+        }
+
+        // Préparer le JSON final
+        val jsonEvaluations = JSONArray()
+
+        // Créer le JSON pour chaque boulangerie
+        for ((bakerySiren, totalScore) in bakeryScores) {
+            val (ticketNum, evaluationDate) = bakeryDetails[bakerySiren] ?: Pair("", "")
+
+            val jsonEvaluation = JSONObject().apply {
+                put("ticketNum", ticketNum)
+                put("score", totalScore)  // La somme des notes
+                put("evaluationDate", evaluationDate)
+                put("siren", bakerySiren)
+            }
+            jsonEvaluations.put(jsonEvaluation)
+        }
+
+        // Créer l'objet JSON à envoyer
+        val jsonBody = JSONObject().apply {
+            put("evaluations", jsonEvaluations)
+        }
+
+        val client = OkHttpClient()
+        val requestBody = RequestBody.create(
+            "application/json".toMediaTypeOrNull(),
+            jsonBody.toString()
+        )
+        println("JSON envoyé: $jsonBody")
+
+        val request = Request.Builder()
+            .url("http://10.0.2.2:8000/api/export/evaluations")
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    val responseBody = response.body?.string()
+                    if (!response.isSuccessful) {
+                        println("Erreur lors de l'exportation: ${response.code}, Réponse: $responseBody")
+                    } else {
+                        println("Évaluations exportées avec succès")
+                        clearEvaluationsAfterExport()
+                    }
+                }
+            }
+        })
     }
+
+
+
+    private fun clearEvaluationsAfterExport() {
+        val db = BakeryHelper(context).writableDatabase
+        db.delete("note", null, null)
+    }
+
+    fun getTicketAndDateBySiren(siren: String): Pair<String?, String?> {
+        val cursor = db.rawQuery(
+            "SELECT ticketNum, evaluationDate FROM bakery WHERE siren = ?",
+            arrayOf(siren)
+        )
+
+        var ticketNum: String? = null
+        var evaluationDate: String? = null
+
+        if (cursor.moveToFirst()) {
+            ticketNum = cursor.getString(cursor.getColumnIndex("ticketNum"))
+            evaluationDate = cursor.getString(cursor.getColumnIndex("evaluationDate"))
+        }
+
+        cursor.close()
+        return Pair(ticketNum, evaluationDate)
+    }
+
 
     private fun insertEvaluation(evaluation: Evaluation) {
         val values = ContentValues().apply {
@@ -215,7 +314,7 @@ class BakeryDAO(private val context: Context) {
             put("evaluation_date", evaluation.evaluation_date)
         }
 
-        // Insertion dans la table `evaluation`
+
         db.insert("evaluation", null, values)
     }
 
