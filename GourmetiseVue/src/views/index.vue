@@ -32,7 +32,7 @@
             Voir les résultats des concours de la meilleure boulangerie
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" to="/results">Afficher Résultats</v-btn>
+            <v-btn color="primary" to="/Classement">Afficher Résultats</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

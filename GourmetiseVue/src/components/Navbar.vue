@@ -24,7 +24,7 @@
         </router-link>
       </v-btn>
       <v-btn>
-        <router-link to="/results" class="router-link">
+        <router-link to="/Classement" class="router-link">
           Afficher résultats
         </router-link>
       </v-btn>

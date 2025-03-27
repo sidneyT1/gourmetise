@@ -5,6 +5,7 @@ import Formulaire from '@/components/Formulaire.vue';
 import ConditionsUtilisation from '@/components/ConditionsUtilisation.vue';
 import Signup from '@/components/Signup.vue';
 import Login from '@/components/Login.vue';
+import Classement from '@/components/Classement.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
             path: '/Login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/Classement',
+            name: 'Classement',
+            component: Classement
         }
     ],
 });
