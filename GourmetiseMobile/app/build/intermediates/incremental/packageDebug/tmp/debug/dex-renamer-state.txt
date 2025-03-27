@@ -1,11 +1,11 @@
-#Wed Mar 26 22:28:33 CET 2025
-base.0=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
-base.3=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.4=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
-base.5=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.6=C\:\\Users\\sidne\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Thu Mar 27 15:30:37 CET 2025
+base.0=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.3=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.4=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
+base.5=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.6=C\:\\Users\\truchet\\Desktop\\gourmetise\\GourmetiseMobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex

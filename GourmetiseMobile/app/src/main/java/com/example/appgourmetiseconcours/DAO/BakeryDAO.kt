@@ -205,50 +205,52 @@ class BakeryDAO(private val context: Context) {
     }
 
     fun exportEvaluationsToServer() {
-        val noteDAO = NoteDAO(context)
-        val evaluations = noteDAO.getAllNotes()
 
-        if (evaluations.isEmpty()) {
-            return
+        val cursor = db.rawQuery(
+            """
+        SELECT bakery_siren, ticketNum, evaluationDate, SUM(value) AS totalScore
+        FROM note
+        INNER JOIN bakery ON bakery_siren = siren
+        GROUP BY bakery_siren
+        """, null
+        )
+
+        val evaluations = mutableListOf<Evaluation>()
+
+        cursor.moveToFirst()
+        while (!cursor.isAfterLast) {
+            val bakerySiren = cursor.getString(cursor.getColumnIndex("bakery_siren"))
+            val ticketNum = cursor.getString(cursor.getColumnIndex("ticketNum"))
+            val evaluationDate = cursor.getString(cursor.getColumnIndex("evaluationDate"))
+            val totalScore = cursor.getInt(cursor.getColumnIndex("totalScore"))
+
+
+            evaluations.add(Evaluation(bakerySiren, totalScore, evaluationDate ?: "", ticketNum))
+
+            cursor.moveToNext()
         }
 
-        // Utilisation d'un Map pour agréger les scores des boulangeries
-        val bakeryScores = mutableMapOf<String, Int>()
-        val bakeryDetails = mutableMapOf<String, Pair<String, String>>()  // Map pour stocker les détails de la boulangerie (ticketNum, evaluationDate)
+        cursor.close()
 
-        // Calcul des scores totaux par boulangerie
-        for (evaluation in evaluations) {
-            val bakerySiren = evaluation.bakerySiren
 
-            // Ajouter ou mettre à jour la somme des scores pour la boulangerie
-            val currentScore = bakeryScores[bakerySiren] ?: 0
-            bakeryScores[bakerySiren] = currentScore + evaluation.value
-
-            // Récupérer les détails de la boulangerie (ticketNum, evaluationDate)
-            val (ticketNum, evaluationDate) = getTicketAndDateBySiren(bakerySiren)
-            bakeryDetails[bakerySiren] = Pair(ticketNum ?: "", evaluationDate ?: "")
-        }
-
-        // Préparer le JSON final
         val jsonEvaluations = JSONArray()
 
-        // Créer le JSON pour chaque boulangerie
-        for ((bakerySiren, totalScore) in bakeryScores) {
-            val (ticketNum, evaluationDate) = bakeryDetails[bakerySiren] ?: Pair("", "")
 
+        for (evaluation in evaluations) {
             val jsonEvaluation = JSONObject().apply {
-                put("ticketNum", ticketNum)
-                put("score", totalScore)  // La somme des notes
-                put("evaluationDate", evaluationDate)
-                put("siren", bakerySiren)
+                put("ticketNum", evaluation.ticketNum)
+                put("score", evaluation.score)  // La somme des notes
+                put("evaluationDate", evaluation.evaluation_date)
+                put("siren", evaluation.bakery_siren)
             }
             jsonEvaluations.put(jsonEvaluation)
         }
 
-        // Créer l'objet JSON à envoyer
+
         val jsonBody = JSONObject().apply {
             put("evaluations", jsonEvaluations)
         }
+
 
         val client = OkHttpClient()
         val requestBody = RequestBody.create(
@@ -280,6 +282,7 @@ class BakeryDAO(private val context: Context) {
             }
         })
     }
+
 
 
 

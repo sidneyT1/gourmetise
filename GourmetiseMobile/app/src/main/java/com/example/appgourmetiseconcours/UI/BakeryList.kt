@@ -53,10 +53,11 @@ class BakeryList : ComponentActivity() {
                     totalEvaluations = bdd.getAllEvaluationsCount()
                 }
 
-                val evaluationActive = contestParams?.let {
+                // Vérification de l'activation de l'exportation
+                val canExportEvaluations = contestParams?.let {
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
                     val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
-                    dateActuelle in dateActuelle..endEvalDate
+                    dateActuelle.after(endEvalDate) // La date actuelle doit être après la date de fin
                 } ?: false
 
                 Column(
@@ -174,7 +175,7 @@ class BakeryList : ComponentActivity() {
                         onClick = {
                             if (totalEvaluations < 5) {
                                 Toast.makeText(context, "Vous devez effectuer au moins 5 évaluations pour envoyer.", Toast.LENGTH_SHORT).show()
-                            } else if (!evaluationActive) {
+                            } else if (!canExportEvaluations) {
                                 Toast.makeText(context, "La période d'évaluation est terminée.", Toast.LENGTH_SHORT).show()
                             } else {
                                 bdd.exportEvaluationsToServer()
@@ -184,7 +185,7 @@ class BakeryList : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
-                        enabled = totalEvaluations >= 5 && evaluationActive,
+                        enabled = totalEvaluations >= 5 && canExportEvaluations,
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary
                         )
