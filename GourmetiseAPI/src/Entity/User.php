@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,8 +31,6 @@ class User
     #[ORM\Column(length: 30)]
     private ?string $role = null;
 
- 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -44,7 +44,6 @@ class User
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
-
         return $this;
     }
 
@@ -56,7 +55,6 @@ class User
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -68,7 +66,6 @@ class User
     public function setCreatedAt(\DateTimeInterface $created_at): static
     {
         $this->created_at = $created_at;
-
         return $this;
     }
 
@@ -80,22 +77,31 @@ class User
     public function setUpdatedAt(\DateTimeInterface $updated_at): static
     {
         $this->updated_at = $updated_at;
-
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getUserIdentifier(): string
     {
-        return $this->role;
+        return $this->mail; 
+    }
+
+        public function getRole(): string
+    {
+        return $this->role ?? 'ROLE_USER'; // Si aucun rôle n'est défini, retourne 'ROLE_USER' par défaut
     }
 
     public function setRole(string $role): static
     {
         $this->role = $role;
-
         return $this;
     }
+    public function getRoles(): array
+    {
+        return [$this->getRole()]; // Retourne un tableau contenant un seul rôle
+    }
 
-   
-
+    public function eraseCredentials(): void
+    {
+      
+    }
 }

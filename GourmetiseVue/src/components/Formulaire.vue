@@ -70,7 +70,7 @@ const description = ref('');
 const checkbox = ref(false);
 const communes = ref([]);
 
-const userEmail = 'abc@gmail.com';
+const userEmail = 'test@gmail.com';
 
 const sirenRules = [
   v => !!v || 'Le champ SIREN/SIRET est obligatoire.',
@@ -115,6 +115,11 @@ const trouveCodepostal = async () => {
 
 const submit = async () => {
   try {
+    const token = localStorage.getItem("token"); 
+    if (!token) {
+      toast.error("Utilisateur non authentifié !");
+      return;
+    }
     const data = {
       name: name.value,
       street: street.value,

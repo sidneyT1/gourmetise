@@ -9,161 +9,460 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fa69a47-26b6-4924-b3b6-0902f31e3ee2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+    <list default="true" id="e6576c52-4db1-4a86-a5a0-daf6168b3d96" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../GourmetiseAPI/migrations/Version20250305184624.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/API/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/API/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/AuthController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Entity/RefreshToken.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_4/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_5/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_6/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_7/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_0/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_1/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_2/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_3/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_4/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_5/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_6/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4d40ee33965a65ab29d2f82334a3a25d1987e919ceb843515c6e654e60227b80_bucket_7/graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/+NRtED+6NzHgdROF0cqSQy++pzo=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/+SeZVOXC3R9EpdMC0HYfFc1kxRw=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/+zZshKsfbqGxcSkWSq8AxRUjr3M=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/1K24IiCDdgWLH1lr3+OPrLQOwB4=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/3+GxiWjaWJWRUVdXWPQFK1dptpg=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/5KSL+TDO6_l4mlFtxebG1tcqgLo=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/6yeuAd3TeSNpycGmMiJnKLAWHJo=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/7kB_v0F+VEO6iN4LeNSTMgLgasU=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/9FP+1xKW27eBjKiaKIZJ1u8N1zQ=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/9_smvIhGpU7zb3D8cm0DQQIj30w=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/A5yS7C2AVgfTvKJy4sgoocqcmh0=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/AeD5Zzm1IVwB9wtXx2Bkcm2IWJo=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Db6h4_v4fsEPuU7W+r_lT2mKmQE=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/GdVkaq8pm5aDbh3k4Pkg+lGmZQg=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Gh7hKCaCUX2cZOD903H9FGLRrxo=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/GyKXEZDRxASf0Ly5da33fW2X_AY=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/I_vN7O4YcEwhNMP8rb_dVqvoUiQ=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/KSJx1qJhdCO1Jg9+ZTOrInSMlzc=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/MTKvdVIAcl24fy+Ga5oCYy6P4uI=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/N2CChWxtAsMffVTsgWYMIGrfpOU=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/NQRYSQ38E5AdEQkD3I_ft+ZH0hY=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Nci8DQ59fOx0VGBptn+vLhRZvBE=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/NtxqU0C4MsbJRDU1LYyNon6nGbg=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/OxYIiJMnn1onU6A2xmi1ua92jB8=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/SI+bfSAZqMV3nF6qaBtlpTRmvM0=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/XHevr7BBijiv5meTTiv73uKQ3Xk=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/XjSaKPtDz45QWkKKhCaAM951Gns=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/XjqaMOpZx3kk3g0sc5Q9M8jMcvk=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Yj2fmSB5YN2OrtLT75Iw7JSw0as=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ZdsNyn2OrucCpT+6cE2f_+dtgOY=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/aOnD5b5qRrsu7u8c9GoH2RX9Jds=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/b+agDtYR1rj5WWm3l6koW1O2QIw=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/bOdv6zejej4IFQr6Hh3JsPp8vHM=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/bebHfLh+y3ATU2rkJKj4GT+euVc=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/c4x5kuXyqeLtsgnrFcVgywkTdSQ=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/cyu37pHLRM5Kg79dq1lUnIBeXT8=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/dLbSA0h67V0rlSJGlAglTO3Jt_I=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/eiTCMsGuEuU2V_l_OprShpvgImU=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/hCyzLpi7CKR+IJ92FkIn3hxOIq8=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/iuhEmE2zWKsPMv8_txe216F6_AM=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/jqkkYnwLUFUg_352Hx36PdbaXvI=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/kiIbGbiYoJ_OFbCJDxFOpbOwGfs=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ldhdZdt88gXDEp+BaUC6oFTrBjU=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/lhIStQjSeHd8H7lfsXJ13C9_1ec=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/m63BOzDobRrLz_Z3n8fw+PEAeGg=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/nV2OJgV_Cumlcv8fTu+7my1yKDc=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/nip2ixME9agMhNHBRub5bNMRdYA=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/oBvThJIx3S7qEF2gdMV9gA3yq+0=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/oT3bu2K70YcU6LBYcGzDRe8VzUc=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/qreHmFNsul4_rwXzsWXVB5DmoB4=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/rqic2qLI94QL59dtLgOx7owpaKI=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/sxJXa2KUC3nYCJf+5tN9YG3Sgyk=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/u14iMiXBlKf8HQbhi3F40aaCV1I=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/vQ6VgqxsHg5mtwKiQypcaUwGEOM=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/vRTeOQsfimpsTvHFD+4W1L6NsZs=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/vxcQbzSB_U+2CJPN1IeY0H+pNww=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/wZXaw95VpHOYzMCfWES+cyJQhCg=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/x8L3IrRDItVEI95HRoMyWCuMnI4=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/xcwLE5EW+XNVA5WhU8jqOhHA_g4=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/xdtzQLTpWploqAQvhshnRQz_wxE=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/xgGnf914JG3TTCBAibiCKJl+L+E=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/xp1N_xpaNjMO89tvR2OX8BOzKVg=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/yIT4emu6Kl8MwupgZNip5AC26EA=" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/0a8aebf4a20e8ca4662297b11e45a2ec667ebc7b33510c330dfe22b52371a51b_7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/23d79501ff235e6370eb765638c07e61732812b27e49e6124f76d06e1a453e00_0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/23d79501ff235e6370eb765638c07e61732812b27e49e6124f76d06e1a453e00_1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/23d79501ff235e6370eb765638c07e61732812b27e49e6124f76d06e1a453e00_2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/23d79501ff235e6370eb765638c07e61732812b27e49e6124f76d06e1a453e00_3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/49721a5be6ced82c21be54b762d9590c364bfa523ea0a9f74d7eb4f02bca6151_0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/49721a5be6ced82c21be54b762d9590c364bfa523ea0a9f74d7eb4f02bca6151_1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/49721a5be6ced82c21be54b762d9590c364bfa523ea0a9f74d7eb4f02bca6151_2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/49721a5be6ced82c21be54b762d9590c364bfa523ea0a9f74d7eb4f02bca6151_3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/7a07f5c40a88c3fd26dfcae93f363e705e000d61ff6015042f378bf73c73fd4c_7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/BakeryDetailActivity$onCreate$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/BakeryDetailActivity$onCreate$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/BakeryDetailActivity.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/BakeryList.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/Business/Bakery.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/Business/ContestParams.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/Business/Criteria.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/Business/Note.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$1$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$4.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$4.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$MainActivityKt$lambda-3$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ComposableSingletons$MainActivityKt$lambda-4$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ContestParams.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ContestParamsDAO.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/DAO/BakeryDAO.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/DAO/ContestParamsDAO.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/DAO/CriteriaDAO.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/DAO/NoteDAO.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivity$getBakeries$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivity$getContestParams$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivity$onCreate$1$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivityKt$Accueil$1$1$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivityKt$Accueil$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivityKt$Accueil$3$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivityKt$Accueil$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/MainActivityKt$Accueil$4.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/BakeryDetailActivity$onCreate$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/BakeryDetailActivity$onCreate$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/BakeryDetailActivity.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/BakeryList.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$2$1$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$2$1$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$2$1$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$2$1$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$4.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$4.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$2.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-3$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$EvaluationActivityKt$lambda-1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$EvaluationActivityKt.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-3$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-4$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$2$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$3$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$3$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$4$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$4$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$5.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/EvaluationActivity.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivity$getBakeries$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivity$getContestParams$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivity$onCreate$1$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivity$onCreate$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivity$onCreate$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivity.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$1$1$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$2$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$3$1$1.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$3.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$4.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/appgourmetiseconcours/ui/MainActivityKt.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/BakeryDetailActivity$onCreate$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/BakeryDetailActivity$onCreate$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/BakeryDetailActivity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/BakeryList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/Business/Bakery.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/Business/ContestParams.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/Business/Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/Business/Note.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$1$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1$invoke$$inlined$items$default$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1$invoke$$inlined$items$default$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt$lambda-2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$BakeryListKt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$MainActivityKt$lambda-3$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ComposableSingletons$MainActivityKt$lambda-4$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ContestParams.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ContestParamsDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/DAO/BakeryDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/DAO/ContestParamsDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/DAO/CriteriaDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/DAO/NoteDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivity$getBakeries$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivity$getContestParams$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivity$onCreate$1$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivityKt$Accueil$1$1$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivityKt$Accueil$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivityKt$Accueil$3$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivityKt$Accueil$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/MainActivityKt$Accueil$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/BakeryDetailActivity$onCreate$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/BakeryDetailActivity$onCreate$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/BakeryDetailActivity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/BakeryList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$2$1$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$2$1$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$2$1$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$2$1$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1$invoke$$inlined$items$default$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1$invoke$$inlined$items$default$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1$2$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt$lambda-3$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$BakeryListKt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$EvaluationActivityKt$lambda-1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$EvaluationActivityKt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-3$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt$lambda-4$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/ComposableSingletons$MainActivityKt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$2$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$3$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$3$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$4$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$4$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1$2$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity$onCreate$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/EvaluationActivity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivity$getBakeries$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivity$getContestParams$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivity$onCreate$1$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivity$onCreate$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivity$onCreate$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$1$1$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$3$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt$Accueil$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/appgourmetiseconcours/ui/MainActivityKt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseVue/src/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseVue/src/components/Login.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GourmetiseVue/src/components/Signup.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/composer/platform_check.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/framework-bundle/DependencyInjection/Compiler/TranslationLintCommandPass.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/framework-bundle/DependencyInjection/Compiler/TranslationUpdateCommandPass.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeAuth.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeCommand.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeController.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeCrud.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeDockerDatabase.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeEntity.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeFixture.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeForm.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeFunctionalTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeListener.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeMessage.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeMiddleware.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeMigration.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeRegistrationForm.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeResetPassword.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeScheduler.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeSerializerEncoder.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeSerializerNormalizer.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeStimulusController.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeSubscriber.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeTwigExtension.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeUnitTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeUser.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeValidator.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeVoter.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/MakeWebhook.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/_WithTests.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/_WithUid.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/security/MakeCustom.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/help/security/MakeFormLogin.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/makers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/php-cs-fixer.config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/config/services.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/docs/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/Class.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/authenticator/EmptyAuthenticator.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/authenticator/EmptySecurityController.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/authenticator/LoginFormAuthenticator.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/authenticator/login_form.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/command/Command.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/controller/Controller.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/controller/test/Test.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/controller/twig_template.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/controller/Controller.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/templates/_delete_form.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/templates/_form.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/templates/edit.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/templates/index.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/templates/new.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/templates/show.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/crud/test/Test.EntityManager.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/doctrine/Entity.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/doctrine/Fixtures.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/doctrine/Repository.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/doctrine/broadcast_twig_template.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/event/Listener.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/event/Subscriber.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/form/Type.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/message/Message.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/message/MessageHandler.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/middleware/Middleware.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/registration/RegistrationController.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/registration/Test.WithVerify.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/registration/Test.WithoutVerify.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/registration/twig_email.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/registration/twig_template.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/ChangePasswordFormType.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/ResetPasswordController.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/ResetPasswordRequestFormType.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/Test.ResetPasswordController.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/twig_check_email.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/twig_email.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/twig_request.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/resetPassword/twig_reset.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/scheduler/Schedule.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/security/UserProvider.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/security/Voter.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/security/custom/Authenticator.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/security/formLogin/LoginController.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/security/formLogin/Test.LoginController.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/security/formLogin/login_form.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/serializer/Encoder.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/serializer/Normalizer.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/stimulus/Controller.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/ApiTestCase.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/Functional.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/KernelTestCase.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/PantherTestCase.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/TestCase.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/Unit.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/test/WebTestCase.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/twig/Component.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/twig/Extension.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/twig/LiveComponent.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/twig/Runtime.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/twig/component_template.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/validator/Constraint.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/validator/Validator.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/verifyEmail/EmailVerifier.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/webhook/RequestParser.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/maker-bundle/templates/webhook/WebhookConsumer.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Command/UserPasswordHashCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Exception/ExceptionInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Exception/InvalidPasswordException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Exception/LogicException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/CheckPasswordLengthTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/MessageDigestPasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/MigratingPasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/NativePasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/PasswordHasherAwareInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/PasswordHasherFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/PasswordHasherFactoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/Pbkdf2PasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/PlaintextPasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/SodiumPasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/UserPasswordHasher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/Hasher/UserPasswordHasherInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/LegacyPasswordHasherInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/PasswordHasherInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendor/symfony/password-hasher/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/API/APIBakeryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/API/APIBakeryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/API/APIUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Controller/API/APIUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseAPI/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseAPI/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk/debug/app-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex_archive_input_jar_hashes/debug/dexBuilderDebug/out" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex_archive_input_jar_hashes/debug/dexBuilderDebug/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex_number_of_buckets_file/debug/dexBuilderDebug/out" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex_number_of_buckets_file/debug/dexBuilderDebug/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/mergeDebugResources.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/mergeDebugResources.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-af.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-af.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-am.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-am.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ar.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-as.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-as.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-az.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-az.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-b+sr+Latn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-b+sr+Latn.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-be.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-be.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bg.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bg.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bn.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bs.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ca.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ca.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-cs.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-cs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-da.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-da.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-de.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-de.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-el.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-el.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rAU.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rAU.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rCA.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rCA.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rGB.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rGB.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rIN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rXC.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rXC.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es-rUS.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es-rUS.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-et.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-et.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-eu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-eu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fa.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fa.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr-rCA.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr-rCA.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hy.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hy.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-in.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-in.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-is.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-is.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-it.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-it.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-iw.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-iw.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ja.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ja.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ka.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ka.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kk.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-km.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-km.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kn.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ko.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ko.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ky.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ky.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lo.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lt.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lt.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lv.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lv.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mk.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ml.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ml.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mn.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ms.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ms.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-my.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-my.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nb.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ne.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ne.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-or.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-or.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pa.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pa.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rBR.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rBR.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rPT.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rPT.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ro.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ro.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ru.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-si.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-si.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sk.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sq.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sq.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sv.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sv.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sw.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sw.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ta.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-te.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-te.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-th.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-th.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uk.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ur.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ur.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uz.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-v21.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-v21.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-vi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-vi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rCN.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rCN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rHK.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rHK.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rTW.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rTW.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/source_set_path_map/debug/mapDebugSourceSetPaths/file-map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/source_set_path_map/debug/mapDebugSourceSetPaths/file-map.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.s" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/DAO/BakeryDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/DAO/BakeryDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/UI/BakeryList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appgourmetiseconcours/UI/BakeryList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/src/components/Formulaire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/src/components/Formulaire.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GourmetiseVue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GourmetiseVue/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,8 +548,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Merging master",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/truchet/Desktop/gourmetise/GourmetiseMobile/app/src/main/java/com/example/appgourmetiseconcours",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"

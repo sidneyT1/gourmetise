@@ -53,11 +53,11 @@ class BakeryList : ComponentActivity() {
                     totalEvaluations = bdd.getAllEvaluationsCount()
                 }
 
-                // Vérification de l'activation de l'exportation
+
                 val canExportEvaluations = contestParams?.let {
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
                     val endEvalDate = dateFormat.parse(it.endEvaluation) ?: Date()
-                    dateActuelle.after(endEvalDate) // La date actuelle doit être après la date de fin
+                    dateActuelle.after(endEvalDate)
                 } ?: false
 
                 Column(
