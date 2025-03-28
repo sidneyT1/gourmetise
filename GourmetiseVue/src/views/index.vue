@@ -1,6 +1,3 @@
-
-
-
 <template>
   <v-container>
     <v-row class="text-center my-12" justify="center">
@@ -32,20 +29,72 @@
             Voir les résultats des concours de la meilleure boulangerie
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" to="/Classement">Afficher Résultats</v-btn>
+            <v-btn color="primary" @click="handleShowResults">Afficher Résultats</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Alerte Pop-up -->
+    <v-dialog v-model="dialogVisible" max-width="400px" persistent>
+      <v-card>
+        <!-- Titre de la modale avec icône et texte centré -->
+        <v-card-title class="d-flex align-center justify-center">
+          <v-icon class="mr-2">mdi-information</v-icon>
+          Alerte
+        </v-card-title>
+
+        <!-- Message -->
+        <v-card-text class="text-center">
+          Le classement n'a pas encore été publié. Vous pourrez consulter les résultats une fois qu'ils seront disponibles.
+        </v-card-text>
+
+        <!-- Actions -->
+        <v-card-actions class="d-flex justify-center">
+          <v-btn color="primary" @click="dialogVisible = false">Fermer</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </v-container>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+const userRole = ref(localStorage.getItem('user_role'));  
+
+const dialogVisible = ref(false);  
+
+const handleShowResults = () => {
+  if (userRole.value === 'Participant') {
+    dialogVisible.value = true;  
+  } else {
+    dialogVisible.value = false;  
+  }
+};
 </script>
 
 <style scoped>
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+
+.v-card-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.v-card-title .v-icon {
+  margin-right: 10px;
+}
+
+
+.v-card-text {
+  text-align: center;
 }
 </style>

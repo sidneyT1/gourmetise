@@ -19,13 +19,13 @@ const router = createRouter({
             path: '/ContestParams',
             name: 'ContestParams',
             component: ContestParams,
-            meta: { requiresAuth: true } 
+            meta: { requiresAuth: true }
         },
         {
             path: '/Formulaire',
             name: 'Formulaire',
             component: Formulaire,
-            meta: { requiresAuth: true } 
+            meta: { requiresAuth: true }
         },
         {
             path: '/ConditionsUtilisation',
@@ -45,19 +45,25 @@ const router = createRouter({
         {
             path: '/Classement',
             name: 'Classement',
-            component: Classement
+            component: Classement,
+            meta: { requiresAuth: true, requiresRole: 'Gérant' } 
         }
     ],
 });
 
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('access_token');
-
+    const userRole = localStorage.getItem('user_role'); 
+    
     if (to.meta.requiresAuth && !token) {
-        next('/Login'); 
-    } else {
-        next();
+        return next('/Login'); 
     }
+
+    if (to.meta.requiresRole && userRole !== to.meta.requiresRole) {
+        return next('/'); 
+    }
+
+    next();
 });
 
 export default router;

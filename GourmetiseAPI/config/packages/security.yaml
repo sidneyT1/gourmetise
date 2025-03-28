@@ -34,6 +34,8 @@ security:
 
 # ROLE_PARTICIPANT
     access_control:
+        - { path: ^/api/leaderboard, roles: PUBLIC_ACCESS }
+        - { path: ^/api/export, roles: PUBLIC_ACCESS }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/bakery, roles: PUBLIC_ACCESS }
         - { path: ^/api/contestParams, roles: PUBLIC_ACCESS }
