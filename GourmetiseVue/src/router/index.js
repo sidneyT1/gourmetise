@@ -46,24 +46,39 @@ const router = createRouter({
             path: '/Classement',
             name: 'Classement',
             component: Classement,
-            meta: { requiresAuth: true, requiresRole: 'Gérant' } 
+            meta: { requiresAuth: true } 
         }
     ],
 });
 
+
+
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('access_token');
     const userRole = localStorage.getItem('user_role'); 
+    const isPublished = localStorage.getItem("isPublished") === "true"; 
+
+
     
+
     if (to.meta.requiresAuth && !token) {
         return next('/Login'); 
     }
 
+    if (to.name === "Classement") {
+        // Autoriser Gérant ou Participant si isPublished est true
+        if (!(userRole === "Gérant" || (userRole === "Participant" && isPublished))) {
+            return next('/');
+        }
+    }
+
     if (to.meta.requiresRole && userRole !== to.meta.requiresRole) {
-        return next('/'); 
+        return next('/');
     }
 
     next();
 });
+
+
 
 export default router;

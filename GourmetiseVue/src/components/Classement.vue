@@ -2,39 +2,37 @@
   <div class="ranking-container">
     <h1 class="ranking-title">Classement du Concours</h1>
 
-    <div v-if="canPublish">
-      <div v-if="ranking && ranking.length > 0">
-        <!-- Podium -->
-        <div class="podium">
-          <div class="podium-item gold">
-            <div class="rank-icon">🥇</div>
-            <div class="bakery-name">{{ ranking[0]?.bakery_name }}</div>  <!-- Remplacé bakeryName par name -->
-            <div class="score">{{ formatScore(ranking[0]?.avg_score) }} points</div>
-          </div>
-          <div class="podium-item silver">
-            <div class="rank-icon">🥈</div>
-            <div class="bakery-name">{{ ranking[1]?.bakery_name }}</div>  <!-- Remplacé bakeryName par name -->
-            <div class="score">{{ formatScore(ranking[1]?.avg_score) }} points</div>
-          </div>
-          <div class="podium-item bronze">
-            <div class="rank-icon">🥉</div>
-            <div class="bakery-name">{{ ranking[2]?.bakery_name }}</div>  <!-- Remplacé bakeryName par name -->
-            <div class="score">{{ formatScore(ranking[2]?.avg_score) }} points</div>
-          </div>
+    <div v-if="ranking && ranking.length > 0">
+      <div class="podium">
+        <div class="podium-item gold">
+          <div class="rank-icon">🥇</div>
+          <div class="bakery-name">{{ ranking[0]?.bakery_name }}</div>
+          <div class="score">{{ formatScore(ranking[0]?.avg_score) }} points</div>
         </div>
-
-        <!-- Button to publish the ranking -->
-        <button @click="publishRanking" class="publish-btn">Publier le classement</button>
+        <div class="podium-item silver">
+          <div class="rank-icon">🥈</div>
+          <div class="bakery-name">{{ ranking[1]?.bakery_name }}</div>
+          <div class="score">{{ formatScore(ranking[1]?.avg_score) }} points</div>
+        </div>
+        <div class="podium-item bronze">
+          <div class="rank-icon">🥉</div>
+          <div class="bakery-name">{{ ranking[2]?.bakery_name }}</div>
+          <div class="score">{{ formatScore(ranking[2]?.avg_score) }} points</div>
+        </div>
       </div>
 
-      <p v-else>Aucun classement disponible pour le moment.</p>
+      <!-- Bouton visible uniquement pour les Gérants et si le classement n'est pas encore publié -->
+      <button v-if="userRole === 'Gérant' && !isPublished" @click="publishRanking" class="publish-btn">
+        Publier le classement
+      </button>
     </div>
 
-    <div v-else>
-      <p class="warning">{{ errorMessage }}</p>
-    </div>
+    <p v-if="!ranking || ranking.length === 0" class="warning">
+      {{ errorMessage }}
+    </p>
   </div>
 </template>
+
 
 
 <script>
@@ -47,26 +45,30 @@ export default {
   data() {
     return {
       ranking: null,
-      canPublish: false, // Détermine si le classement peut être publié
-      errorMessage: "",  // Message d'erreur à afficher si la période d'évaluation n'est pas terminée
+      canPublish: false,
+      errorMessage: "",
+      isPublished: localStorage.getItem("isPublished") === "true", // Vérifier si le classement est publié
+      userRole: localStorage.getItem("user_role"), // Récupérer le rôle de l'utilisateur
     };
   },
   methods: {
     async loadRankingData() {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/leaderboard');
-        
+        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/leaderboard");
+
         if (response.status === 200 && response.data.length > 0) {
           this.ranking = response.data;
           this.canPublish = true;
-          this.errorMessage = '';
+          this.errorMessage = "";
           
-          // Lance l'animation des confettis lorsque les données sont disponibles
-          this.launchConfetti();
+          // Lancer l'animation
+          
+            this.launchConfetti();
+          
         } else {
           this.ranking = [];
           this.canPublish = false;
-          this.errorMessage = "La période d'évaluation n'est pas encore terminée. Vous ne pouvez pas générer le classement pour l'instant.";
+          this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
         }
       } catch (error) {
         console.error("Erreur lors du chargement du classement:", error);
@@ -75,16 +77,16 @@ export default {
       }
     },
 
-    // Publie le classement
     async publishRanking() {
       try {
+        localStorage.setItem("isPublished", "true");
+        this.isPublished = true;
         alert("Classement publié avec succès !");
       } catch (error) {
         alert("Erreur lors de la publication du classement.");
       }
     },
 
-    // Animation des confettis
     launchConfetti() {
       confetti({
         particleCount: 400,
@@ -94,9 +96,8 @@ export default {
       });
     },
 
-    // Formate et arrondie le score à 2 chiffres après la virgule
     formatScore(score) {
-      return parseFloat(score).toFixed(2); // Arrondir à 2 décimales
+      return parseFloat(score).toFixed(2);
     },
   },
 
@@ -105,6 +106,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 /* General Styles */

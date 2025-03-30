@@ -38,18 +38,13 @@
     <!-- Alerte Pop-up -->
     <v-dialog v-model="dialogVisible" max-width="400px" persistent>
       <v-card>
-        <!-- Titre de la modale avec icône et texte centré -->
         <v-card-title class="d-flex align-center justify-center">
           <v-icon class="mr-2">mdi-information</v-icon>
           Alerte
         </v-card-title>
-
-        <!-- Message -->
         <v-card-text class="text-center">
           Le classement n'a pas encore été publié. Vous pourrez consulter les résultats une fois qu'ils seront disponibles.
         </v-card-text>
-
-        <!-- Actions -->
         <v-card-actions class="d-flex justify-center">
           <v-btn color="primary" @click="dialogVisible = false">Fermer</v-btn>
         </v-card-actions>
@@ -61,16 +56,18 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const userRole = ref(localStorage.getItem('user_role'));  
-
-const dialogVisible = ref(false);  
+const router = useRouter();
+const userRole = ref(localStorage.getItem('user_role'));
+const isPublished = ref(localStorage.getItem('isPublished') === 'true');
+const dialogVisible = ref(false);
 
 const handleShowResults = () => {
-  if (userRole.value === 'Participant') {
-    dialogVisible.value = true;  
+  if (isPublished.value || userRole.value === 'Gérant') {
+    router.push('/Classement'); // Redirection si publié ou si utilisateur = Gérant
   } else {
-    dialogVisible.value = false;  
+    dialogVisible.value = true; // Sinon, afficher l'alerte
   }
 };
 </script>
@@ -81,18 +78,15 @@ const handleShowResults = () => {
   margin-bottom: 3rem;
 }
 
-
 .v-card-title {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
 .v-card-title .v-icon {
   margin-right: 10px;
 }
-
 
 .v-card-text {
   text-align: center;
