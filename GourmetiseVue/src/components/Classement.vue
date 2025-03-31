@@ -47,8 +47,8 @@ export default {
       ranking: null,
       canPublish: false,
       errorMessage: "",
-      isPublished: localStorage.getItem("isPublished") === "true", // Vérifier si le classement est publié
-      userRole: localStorage.getItem("user_role"), // Récupérer le rôle de l'utilisateur
+      isPublished: localStorage.getItem("isPublished") === "true",
+      userRole: localStorage.getItem("user_role"), 
     };
   },
   methods: {
@@ -61,7 +61,6 @@ export default {
           this.canPublish = true;
           this.errorMessage = "";
           
-          // Lancer l'animation
           
             this.launchConfetti();
           
@@ -109,7 +108,6 @@ export default {
 
 
 <style scoped>
-/* General Styles */
 body {
   background-color: #f9f9f9;
   font-family: 'Arial', sans-serif;
@@ -197,7 +195,6 @@ body {
   background-color: darkgreen;
 }
 
-/* Warning Message */
 .warning {
   color: red;
   font-weight: bold;

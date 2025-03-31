@@ -87,7 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         public function getRole(): string
     {
-        return $this->role ?? 'ROLE_USER'; // Si aucun rôle n'est défini, retourne 'ROLE_USER' par défaut
+        return $this->role ?? 'ROLE_USER';
     }
 
     public function setRole(string $role): static
@@ -97,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     public function getRoles(): array
     {
-        return [$this->getRole()]; // Retourne un tableau contenant un seul rôle
+        return [$this->getRole()]; 
     }
 
     public function eraseCredentials(): void

@@ -55,18 +55,22 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('access_token');
-    const userRole = localStorage.getItem('user_role'); 
-    const isPublished = localStorage.getItem("isPublished") === "true"; 
+    const userRole = localStorage.getItem('user_role');
+    const isPublished = localStorage.getItem("isPublished") === "true";
 
-
-    
-
-    if (to.meta.requiresAuth && !token) {
-        return next('/Login'); 
+    if (to.meta.requiresAuth && !token && !isPublished) {
+        return next('/Login');  
     }
 
     if (to.name === "Classement") {
-        // Autoriser Gérant ou Participant si isPublished est true
+        if (isPublished) {
+            return next(); 
+        }
+
+        if (!token) {
+            return next('/');
+        }
+
         if (!(userRole === "Gérant" || (userRole === "Participant" && isPublished))) {
             return next('/');
         }
@@ -78,6 +82,7 @@ router.beforeEach((to, from, next) => {
 
     next();
 });
+
 
 
 
