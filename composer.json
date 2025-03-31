@@ -1,5 +1,8 @@
 {
     "require-dev": {
         "symfony/maker-bundle": "^1.61"
+    },
+    "require": {
+        "gesdinet/jwt-refresh-token-bundle": "^1.4"
     }
 }

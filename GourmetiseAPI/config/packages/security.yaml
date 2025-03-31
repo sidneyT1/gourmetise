@@ -32,6 +32,9 @@ security:
             lazy: true
             provider: app_user_provider
 
+        gesdinet_jwt_refresh_token:
+            pattern: ^/api/refresh_token$
+
 # ROLE_PARTICIPANT
     access_control:
         - { path: ^/api/leaderboard, roles: PUBLIC_ACCESS }
