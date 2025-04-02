@@ -65,9 +65,9 @@ const dialogVisible = ref(false);
 
 const handleShowResults = () => {
   if (isPublished.value || userRole.value === 'Gérant') {
-    router.push('/Classement'); // Redirection si publié ou si utilisateur = Gérant
+    router.push('/Classement'); 
   } else {
-    dialogVisible.value = true; // Sinon, afficher l'alerte
+    dialogVisible.value = true; 
   }
 };
 </script>
