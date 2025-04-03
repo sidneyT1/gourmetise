@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import api from "@/api"; // Import de l'instance Axios
+import api from "@/api";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -16,15 +16,12 @@ const login = async () => {
       password: password.value,
     });
 
-    // Récupérer le token et le rôle depuis la réponse
     const token = response.data.token;
-    const userRole = response.data.user.role; // Supposons que le backend renvoie un rôle
+    const userRole = response.data.user.role;
 
-    // Stocker le token et le rôle dans localStorage
     localStorage.setItem("access_token", token);
-    localStorage.setItem("user_role", userRole); // Stockage du rôle
+    localStorage.setItem("user_role", userRole);
 
-    // Rediriger l'utilisateur vers le dashboard
     router.push("/dashboard");
   } catch (error) {
     errorMessage.value = error.response?.data?.message || "Erreur lors de la connexion";

@@ -3,6 +3,7 @@
     <h1 class="ranking-title">Classement du Concours</h1>
 
     <div v-if="ranking && ranking.length > 0">
+      <!-- Afficher uniquement le podium (3 premières boulangeries) si déconnecté -->
       <div class="podium">
         <div class="podium-item gold">
           <div class="rank-icon">🥇</div>
@@ -21,7 +22,23 @@
         </div>
       </div>
 
-      <!-- Bouton visible uniquement pour les Gérants et si le classement n'est pas encore publié -->
+      <table v-if="isUserConnected && ranking.length > 3" class="ranking-table">
+        <thead>
+          <tr>
+            <th>Rang</th>
+            <th>Boulangerie</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(bakery, index) in ranking.slice(3)" :key="index">
+            <td>{{ index + 4 }}</td>
+            <td>{{ bakery.bakery_name }}</td>
+            <td>{{ formatScore(bakery.avg_score) }} points</td>
+          </tr>
+        </tbody>
+      </table>
+
       <button v-if="userRole === 'Gérant' && !isPublished" @click="publishRanking" class="publish-btn">
         Publier le classement
       </button>
@@ -32,7 +49,6 @@
     </p>
   </div>
 </template>
-
 
 
 <script>
@@ -48,7 +64,8 @@ export default {
       canPublish: false,
       errorMessage: "",
       isPublished: localStorage.getItem("isPublished") === "true",
-      userRole: localStorage.getItem("user_role"), 
+      userRole: localStorage.getItem("user_role"),
+      isUserConnected: !!localStorage.getItem("access_token"),  // Vérifie si l'utilisateur est connecté
     };
   },
   methods: {
@@ -60,10 +77,7 @@ export default {
           this.ranking = response.data;
           this.canPublish = true;
           this.errorMessage = "";
-          
-          
-            this.launchConfetti();
-          
+          this.launchConfetti();
         } else {
           this.ranking = [];
           this.canPublish = false;
@@ -124,7 +138,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* Podium Styles */
 .podium {
   display: flex;
   justify-content: center;
@@ -179,7 +192,6 @@ body {
   padding: 10px 20px;
 }
 
-/* Publish Button */
 .publish-btn {
   background-color: green;
   color: white;
@@ -201,4 +213,23 @@ body {
   margin-top: 30px;
   font-size: 1.5rem;
 }
+
+.ranking-table {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ranking-table th, .ranking-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.ranking-table th {
+  background-color: #f2f2f2;
+}
+
 </style>

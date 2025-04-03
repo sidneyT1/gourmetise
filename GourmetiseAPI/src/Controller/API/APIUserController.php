@@ -27,11 +27,9 @@ class APIUserController extends AbstractController
         $data = $request->getContent();
     
         try {
-            // Désérialiser le JSON en une instance de User
             $user = $serializer->deserialize($data, User::class, 'json');
             $user->setCreatedAt(new \DateTime());
     
-            // Créer l'utilisateur et obtenir le token JWT
             $token = $userRepository->registerUser($user);
     
             return new JsonResponse(['token' => $token], Response::HTTP_CREATED);

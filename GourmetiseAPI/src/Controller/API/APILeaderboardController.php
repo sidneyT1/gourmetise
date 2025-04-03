@@ -13,7 +13,6 @@ class APILeaderboardController extends AbstractController
     private Connection $connection;
     private ContestParamsRepository $contestParamsRepository;
 
-    // Injection du repository pour récupérer les paramètres du concours
     public function __construct(Connection $connection, ContestParamsRepository $contestParamsRepository)
     {
         $this->connection = $connection;
@@ -42,7 +41,7 @@ class APILeaderboardController extends AbstractController
                 INNER JOIN bakery b ON e.siren = b.siren
                 GROUP BY b.siren, b.name
                 ORDER BY avg_score DESC
-                LIMIT 3
+               
             ";
 
             $stmt = $this->connection->executeQuery($sql);
