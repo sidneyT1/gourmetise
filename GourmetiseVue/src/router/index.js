@@ -6,7 +6,7 @@ import ConditionsUtilisation from '@/components/ConditionsUtilisation.vue';
 import Signup from '@/components/Signup.vue';
 import Login from '@/components/Login.vue';
 import Classement from '@/components/Classement.vue';
-import PersonalScore from '@/components/ScorePersonnel.vue';
+import ScorePersonnel from '@/components/ScorePersonnel.vue';
 
 
 const router = createRouter({
@@ -51,11 +51,10 @@ const router = createRouter({
             meta: { requiresAuth: true } 
         },
         {
-            path: '/personal-score/:bakeryId',
-            name: 'PersonalScore',
-            component: PersonalScore,
-            meta: { requiresAuth: true }
+            path: "/personal-score",
+            component: ScorePersonnel,
           }
+          
           
     ],
 });
