@@ -46,7 +46,6 @@
       </v-col>
     </v-row>
 
-    <!-- Alerte Pop-up -->
     <v-dialog v-model="dialogVisible" max-width="400px" persistent>
       <v-card>
         <v-card-title class="d-flex align-center justify-center">
@@ -76,9 +75,9 @@ const dialogVisible = ref(false);
 
 const handleShowResults = () => {
   if (isPublished.value || userRole.value === 'Gérant') {
-    router.push('/Classement'); // Redirection si publié ou si utilisateur = Gérant
+    router.push('/Classement'); 
   } else {
-    dialogVisible.value = true; // Sinon, afficher l'alerte
+    dialogVisible.value = true; 
   }
 };
 </script>

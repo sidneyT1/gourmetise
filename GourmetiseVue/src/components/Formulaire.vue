@@ -70,8 +70,6 @@ const description = ref('');
 const checkbox = ref(false);
 const communes = ref([]);
 
-const userEmail = 'test@gmail.com';
-
 const sirenRules = [
   v => !!v || 'Le champ SIREN/SIRET est obligatoire.',
   v => /^\d{9}$|^\d{14}$/.test(v) || 'Le N° SIREN/SIRET doit contenir 9 ou 14 chiffres.'
@@ -85,7 +83,7 @@ const postalCodeRules = [
 const cityRules = [v => !!v || 'Le champ ville est obligatoire.'];
 const phoneRules = [
   v => !!v || 'Le champ téléphone est obligatoire.',
-  v => /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/.test(v) || 'Le numéro de téléphone doit contenir exactement 10 chiffres.'
+  v => /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/.test(v) || 'Le numéro de téléphone doit être valide.'
 ];
 const contactNameRules = [v => !!v || 'Le champ nom de contact est obligatoire.'];
 const descriptionRules = [v => !!v || 'Le champ description est obligatoire.'];
@@ -98,15 +96,10 @@ const trouveCodepostal = async () => {
   if (postalCode.value.length === 5) {
     try {
       const response = await axios.get(`https://geo.api.gouv.fr/communes?codePostal=${postalCode.value}`);
-      if (response.data.length > 0) {
-        communes.value = response.data.map(commune => commune.nom);
-      } else {
-        toast.error('Aucune ville trouvée pour ce code postal.');
-        communes.value = [];
-      }
+      communes.value = response.data.map(commune => commune.nom);
     } catch (error) {
       toast.error('Erreur lors de la récupération de la ville.');
-      console.error(error);
+      communes.value = [];
     }
   } else {
     communes.value = [];
@@ -115,11 +108,12 @@ const trouveCodepostal = async () => {
 
 const submit = async () => {
   try {
-    const token = localStorage.getItem("token"); 
+    const token = localStorage.getItem("access_token");
     if (!token) {
       toast.error("Utilisateur non authentifié !");
       return;
     }
+
     const data = {
       name: name.value,
       street: street.value,
@@ -130,26 +124,26 @@ const submit = async () => {
       contactname: contactName.value,
       description: description.value,
       conditions_checkbox: checkbox.value,
-      conditions_date: new Date().toISOString(),
-      user: {
-        mail: userEmail,
-      },
+      conditions_date: new Date().toISOString()
     };
 
-    const response = await axios.post(import.meta.env.VITE_API_URL + '/api/bakery', data);
+    await axios.post(
+      import.meta.env.VITE_API_URL + '/api/bakery',
+      data,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
-    toast.success('Formulaire enregistré avec succès!');
-    console.log(response.data);
+    toast.success('Formulaire enregistré avec succès !');
   } catch (error) {
-    if (error.response && error.response.data) {
-      toast.error(error.response.data.error || 'Une erreur est survenue!');
+    if (error.response?.status === 403 && error.response.data?.error?.includes('période')) {
+      toast.error("Vous ne pouvez pas vous inscrire en dehors de la période d’inscription.");
     } else {
-      toast.error('Une erreur inconnue est survenue!');
+      toast.error(error.response?.data?.error || 'Une erreur est survenue.');
     }
-    console.error('Erreur lors de la soumission du formulaire:', error);
   }
 };
 </script>
+
 
 <style scoped>
 .fond-page {

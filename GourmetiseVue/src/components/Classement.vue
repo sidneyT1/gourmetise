@@ -93,10 +93,17 @@ export default {
           this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
         }
       } catch (error) {
-        console.error("Erreur lors du chargement du classement:", error);
-        this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
-        this.canPublish = false;
-      }
+  console.error("Erreur lors du chargement du classement:", error);
+  if (error.response && error.response.status === 400) {
+    this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
+  } else {
+    this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
+  }
+
+  this.ranking = [];
+  this.canPublish = false;
+}
+
     },
 
     async publishRanking() {

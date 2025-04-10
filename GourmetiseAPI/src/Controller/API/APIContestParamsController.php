@@ -61,7 +61,7 @@ class APIContestParamsController extends AbstractController
         }
         catch (\Exception $e) {
             return new JsonResponse(['error' => $e->getMessage()], 
-                                     Response::HTTP_BAD_REQUEST);
+            Response::HTTP_BAD_REQUEST);
         }
     }
 

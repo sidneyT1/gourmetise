@@ -19,7 +19,6 @@ class AuthController extends AbstractController
     public function getProfile(): JsonResponse
     {
     
-    // Récupérer l'utilisateur connecté
     $user = $this->getUser();
     return $this->json ($user, status: Response::HTTP_OK );
     }

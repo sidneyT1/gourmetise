@@ -33,83 +33,64 @@ class APIBakeryController extends AbstractController
         }
     }
 
-    #[Route('/api/bakery', methods: ["POST"])]
-    public function createBakery(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        SerializerInterface $serializer
-    ): JsonResponse {
-        $data = $request->getContent();
+        #[Route('/api/bakery', methods: ["POST"])]
+        public function createBakery(
+            Request $request,
+            EntityManagerInterface $entityManager,
+            SerializerInterface $serializer
+        ): JsonResponse {
+            $data = $request->getContent();
 
-        try {
-            $bakery = $serializer->deserialize($data, Bakery::class, 'json');
+            try {
+                $bakery = $serializer->deserialize($data, Bakery::class, 'json');
 
-            if (!$bakery->getSiren()) {
-                return new JsonResponse(['error' => 'Le champ siren est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if (!$bakery->getName()) {
-                return new JsonResponse(['error' => 'Le champ name est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if (!$bakery->getStreet()) {
-                return new JsonResponse(['error' => 'Le champ street est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if (!$bakery->getPostcode()) {
-                return new JsonResponse(['error' => 'Le champ postcode est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if (!$bakery->getCity()) {
-                return new JsonResponse(['error' => 'Le champ city est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if (!$bakery->getPhonenumber()) {
-                return new JsonResponse(['error' => 'Le champ phonenumber est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if (!$bakery->getContactname()) {
-                return new JsonResponse(['error' => 'Le champ contactname est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
-            if ($bakery->isConditionsCheckbox() === null) {
-                return new JsonResponse(['error' => 'Le champ conditions_checkbox est obligatoire.'], Response::HTTP_BAD_REQUEST);
-            }
+                if (!$bakery->getSiren()) return new JsonResponse(['error' => 'Le champ siren est obligatoire.'], 400);
+                if (!$bakery->getName()) return new JsonResponse(['error' => 'Le champ name est obligatoire.'], 400);
+                if (!$bakery->getStreet()) return new JsonResponse(['error' => 'Le champ street est obligatoire.'], 400);
+                if (!$bakery->getPostcode()) return new JsonResponse(['error' => 'Le champ postcode est obligatoire.'], 400);
+                if (!$bakery->getCity()) return new JsonResponse(['error' => 'Le champ city est obligatoire.'], 400);
+                if (!$bakery->getPhonenumber()) return new JsonResponse(['error' => 'Le champ phonenumber est obligatoire.'], 400);
+                if (!$bakery->getContactname()) return new JsonResponse(['error' => 'Le champ contactname est obligatoire.'], 400);
+                if ($bakery->isConditionsCheckbox() === null) return new JsonResponse(['error' => 'Le champ conditions_checkbox est obligatoire.'], 400);
 
-            $existingSiren = $entityManager->getRepository(Bakery::class)->findOneBy(['siren' => $bakery->getSiren()]);
-            if ($existingSiren) {
-                return new JsonResponse(['error' => 'Le SIREN existe déjà.'], Response::HTTP_BAD_REQUEST);
+                $existingSiren = $entityManager->getRepository(Bakery::class)->findOneBy(['siren' => $bakery->getSiren()]);
+                if ($existingSiren) return new JsonResponse(['error' => 'Le SIREN existe déjà.'], 400);
+
+                $connectedUser = $this->getUser();
+                if (!$connectedUser instanceof User) {
+                    return new JsonResponse(['error' => 'Utilisateur non connecté.'], 401);
+                }
+
+                if (!in_array('Participant', $connectedUser->getRoles())) {
+                    return new JsonResponse(['error' => 'L\'utilisateur n\'est pas un participant'], 403);
+                }
+
+                $existingUserBakery = $entityManager->getRepository(Bakery::class)->findOneBy(['user' => $connectedUser]);
+                if ($existingUserBakery) {
+                    return new JsonResponse(['error' => 'L\'utilisateur est déjà inscrit.'], 400);
+                }
+
+                $contestParams = $entityManager->getRepository(ContestParams::class)->find(1);
+                $now = new \DateTime();
+
+                if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
+                    return new JsonResponse(['error' => 'Vous êtes hors période d\'inscription'], 403);
+                }
+
+                $bakery->setUser($connectedUser);
+                if (!$bakery->getConditionsDate()) {
+                    $bakery->setConditionsDate(new \DateTime());
+                }
+
+                $entityManager->persist($bakery);
+                $entityManager->flush();
+
+                return new JsonResponse(['message' => 'Création Bakery réussie'], 201);
+            } catch (\Doctrine\DBAL\Exception\UniqueConstraintViolationException $e) {
+                return new JsonResponse(['error' => 'L\'utilisateur est déjà enregistré.'], 400);
+            } catch (\Exception $e) {
+                return new JsonResponse(['error' => 'Une erreur est survenue: ' . $e->getMessage()], 400);
             }
-
-
-            $user = $bakery->getUser();
-            if (!$user || !$user->getMail()) {
-                return new JsonResponse(['error' => 'Veuillez fournir un email utilisateur valide.'], Response::HTTP_BAD_REQUEST);
-            }
-
-            $existingUser = $entityManager->getRepository(User::class)->findOneBy(['mail' => $user->getMail()]);
-            if (!$existingUser) {
-                return new JsonResponse(['error' => 'Utilisateur introuvable.'], Response::HTTP_BAD_REQUEST);
-            }
-
-            if (!in_array('Participant', $existingUser->getRoles())) {
-                return new JsonResponse(['error' => 'L\'utilisateur n\'est pas un participant'], Response::HTTP_BAD_REQUEST);
-            }
-
-            $contestParams = $entityManager->getRepository(ContestParams::class)->find(1);
-            $now = new DateTime();
-
-            if ($now < $contestParams->getStartRegistration() || $now > $contestParams->getEndRegistration()) {
-                return new JsonResponse(['error' => 'Vous êtes hors période d\'inscription'], Response::HTTP_FORBIDDEN);
-            }
-
-            $bakery->setUser($existingUser);
-
-            if (!$bakery->getConditionsDate()) {
-                $bakery->setConditionsDate(new \DateTime());
-            }
-
-            $entityManager->persist($bakery);
-            $entityManager->flush();
-
-            return new JsonResponse(['message' => 'Création Bakery réussie'], Response::HTTP_CREATED);
-        } catch (UniqueConstraintViolationException $e) {
-            return new JsonResponse(['error' => 'L\'utilisateur est déjà enregistrée dans la base de données.'], Response::HTTP_BAD_REQUEST);
-        } catch (\Exception $e) {
-            return new JsonResponse(['error' => 'Une erreur est survenue: ' . $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
-    }
+
 }

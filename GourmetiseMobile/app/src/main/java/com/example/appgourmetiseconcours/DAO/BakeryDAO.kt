@@ -239,7 +239,7 @@ class BakeryDAO(private val context: Context) {
         for (evaluation in evaluations) {
             val jsonEvaluation = JSONObject().apply {
                 put("ticketNum", evaluation.ticketNum)
-                put("score", evaluation.score)  // La somme des notes
+                put("score", evaluation.score)
                 put("evaluationDate", evaluation.evaluation_date)
                 put("siren", evaluation.bakery_siren)
             }
