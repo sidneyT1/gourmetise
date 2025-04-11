@@ -24,7 +24,7 @@ const login = async () => {
     localStorage.setItem("access_token", token);
     localStorage.setItem("user_role", userRole);
 
-    router.push("/dashboard");
+    router.push("/");
   } catch (error) {
     errorMessage.value = error.response?.data?.message || "Erreur lors de la connexion";
   }

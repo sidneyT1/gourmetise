@@ -232,9 +232,15 @@ fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
                                 .parse(it.startRegistration) ?: Date()
                             val endRegDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
                                 .parse(it.endRegistration) ?: Date()
+                            val startEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                .parse(it.startEvaluation) ?: Date()
+                            val endEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+                                .parse(it.endEvaluation) ?: Date()
 
-                            if (dateActuelle.before(startRegDate) || dateActuelle.after(endRegDate)) {
+                            if ((dateActuelle.before(startRegDate) || dateActuelle.after(endRegDate)) &&
+                                (dateActuelle.before(startEvalDate) || dateActuelle.after(endEvalDate))) {
                                 showAlert = true
+
                             } else {
                                 VoirParticipants()
                             }
