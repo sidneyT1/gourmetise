@@ -29,7 +29,10 @@
         </router-link>
       </v-btn>
 
-     
+      <v-btn v-if="!isLoggedIn" @click="goToLogin" color="green">
+        Connexion
+      </v-btn>
+
       <v-btn v-if="isLoggedIn" @click="logout" color="red">
         Déconnexion
       </v-btn>
@@ -43,18 +46,19 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-
 const isLoggedIn = ref(localStorage.getItem('access_token') !== null);
-
 
 watch(() => localStorage.getItem('access_token'), (newValue) => {
   isLoggedIn.value = newValue !== null;
 });
 
+const goToLogin = () => {
+  router.push('/Login');
+};
 
 const logout = () => {
-  localStorage.removeItem('access_token'); 
-  router.push('/Login'); 
+  localStorage.removeItem('access_token');
+  router.push('/Login');
 };
 </script>
 

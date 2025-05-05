@@ -88,7 +88,7 @@ const fetchUserRole = async () => {
     const token = localStorage.getItem('access_token');
     if (!token) return;
 
-    const response = await axios.get(import.meta.env.VITE_API_URL + '/api/user', {
+    const response = await axios.get(import.meta.env.VITE_API_URL + '/api/profile', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
