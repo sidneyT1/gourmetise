@@ -37,6 +37,10 @@ class ContestParams
     #[Groups(['ContestParams:Read','ContestParams:Write'])]
     private ?\DateTimeInterface $endEvaluation = null;
 
+    #[ORM\Column(type: 'boolean', nullable: false)]
+    #[Groups(['ContestParams:Read', 'ContestParams:Write'])]
+    private bool $isPublished = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,6 +115,16 @@ class ContestParams
     {
         $this->endEvaluation = $endEvaluation;
 
+        return $this;
+    }
+    public function isPublished(): bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): static
+    {
+        $this->isPublished = $isPublished;
         return $this;
     }
 }

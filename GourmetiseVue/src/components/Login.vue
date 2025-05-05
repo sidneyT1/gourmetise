@@ -17,19 +17,16 @@ const login = async () => {
     });
 
     const token = response.data.token;
-    const userRole = response.data.user.role;
-
-    
-
+    // Enregistrer uniquement le token dans le localStorage
     localStorage.setItem("access_token", token);
-    localStorage.setItem("user_role", userRole);
 
-    router.push("/");
+    router.push("/");  // Rediriger vers la page d'accueil
   } catch (error) {
     errorMessage.value = error.response?.data?.message || "Erreur lors de la connexion";
   }
 };
 </script>
+
 
 <template>
   <v-container class="pa-4" style="max-width: 500px; min-width: 500px;">

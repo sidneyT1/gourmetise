@@ -3,7 +3,8 @@
     <h1 class="ranking-title">Classement du Concours</h1>
 
     <div v-if="ranking && ranking.length > 0">
-      <div v-if="userRole !== 'Gérant'" class="podium">
+      <!-- Podium: Les 3 premières boulangeries -->
+      <div class="podium">
         <div class="podium-item gold">
           <div class="rank-icon">🥇</div>
           <div class="bakery-name">{{ ranking[0]?.bakery_name }}</div>
@@ -20,44 +21,23 @@
           <div class="score">{{ formatScore(ranking[2]?.avg_score) }} points</div>
         </div>
       </div>
-      <router-link
-  v-if="userRole === 'Participant' && isUserConnected"
-  to="/personal-score"
-  class="btn-see-personal-score"
->
-  Voir mon classement
-</router-link>
-
 
       <p v-if="userRole === 'Gérant'" class="admin-note">
         Vous consultez le classement complet en tant que Gérant.
       </p>
 
-      <table v-if="userRole === 'Gérant' && isUserConnected && ranking.length > 0" class="ranking-table">
-        <thead>
-          <tr>
-            <th>Rang</th>
-            <th>Boulangerie</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(bakery, index) in ranking" :key="index">
-            <td>{{ index + 1 }}</td>
-            <td>{{ bakery.bakery_name }}</td>
-            <td>{{ formatScore(bakery.avg_score) }} points</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button v-if="userRole === 'Gérant' && isUserConnected && !isPublished" @click="publishRanking" class="publish-btn">
-        Publier le classement
-      </button>
+      <p v-if="!ranking || ranking.length === 0" class="warning">
+        {{ errorMessage }}
+      </p>
     </div>
 
-    <p v-if="!ranking || ranking.length === 0" class="warning">
-      {{ errorMessage }}
-    </p>
+    <button
+      v-if="userRole === 'Gérant' && isUserConnected && !isPublished"
+      @click="publishRanking"
+      class="publish-btn"
+    >
+      Publier le classement
+    </button>
   </div>
 </template>
 
@@ -72,8 +52,8 @@ export default {
       ranking: null,
       canPublish: false,
       errorMessage: "",
-      isPublished: localStorage.getItem("isPublished") === "true",
-      userRole: localStorage.getItem("user_role"),
+      isPublished: false,
+      userRole: null, 
       isUserConnected: !!localStorage.getItem("access_token"),
     };
   },
@@ -92,27 +72,37 @@ export default {
           this.canPublish = false;
           this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
         }
+
+        const paramsResponse = await axios.get(import.meta.env.VITE_API_URL + "/api/contestParams");
+        if (paramsResponse.status === 200) {
+          this.isPublished = paramsResponse.data.isPublished;
+        }
+
       } catch (error) {
-  console.error("Erreur lors du chargement du classement:", error);
-  if (error.response && error.response.status === 400) {
-    this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
-  } else {
-    this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
-  }
-
-  this.ranking = [];
-  this.canPublish = false;
-}
-
+        console.error("Erreur lors du chargement du classement:", error);
+        if (error.response && error.response.status === 400) {
+          this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
+        } else {
+          this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
+        }
+        this.ranking = [];
+        this.canPublish = false;
+      }
     },
 
     async publishRanking() {
       try {
-        localStorage.setItem("isPublished", "true");
-        this.isPublished = true;
-        alert("Classement publié avec succès !");
+        const response = await axios.put(import.meta.env.VITE_API_URL + "/api/contestParams", {
+          isPublished: true,
+        });
+
+        if (response.status === 200) {
+          this.isPublished = true;
+          alert("Classement publié avec succès !");
+        }
       } catch (error) {
         alert("Erreur lors de la publication du classement.");
+        console.error(error);
       }
     },
 
@@ -234,39 +224,4 @@ body {
   margin-top: 30px;
   font-size: 1.5rem;
 }
-
-.ranking-table {
-  width: 80%;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.ranking-table th,
-.ranking-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.ranking-table th {
-  background-color: #f2f2f2;
-}
-.btn-see-personal-score {
-  display: inline-block;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 25px;
-  margin-top: 30px;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.btn-see-personal-score:hover {
-  background-color: #0056b3;
-}
-
 </style>

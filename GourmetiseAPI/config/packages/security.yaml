@@ -40,6 +40,7 @@ security:
         - { path: ^/api/bakery, roles: PUBLIC_ACCESS }
         - { path: ^/api/contestParams, roles: PUBLIC_ACCESS }
         - { path: ^/api/register, roles: PUBLIC_ACCESS }
+        - { path: ^/api/user, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:

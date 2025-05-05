@@ -7,7 +7,7 @@ import Signup from '@/components/Signup.vue';
 import Login from '@/components/Login.vue';
 import Classement from '@/components/Classement.vue';
 import ScorePersonnel from '@/components/ScorePersonnel.vue';
-
+import axios from 'axios';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,50 +48,46 @@ const router = createRouter({
             path: '/Classement',
             name: 'Classement',
             component: Classement,
-            meta: { requiresAuth: true } 
+           
         },
         {
             path: "/personal-score",
             component: ScorePersonnel,
-          }
-          
-          
+        }
     ],
 });
 
-
-
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const token = localStorage.getItem('access_token');
-    const userRole = localStorage.getItem('user_role');
-    const isPublished = localStorage.getItem("isPublished") === "true";
-
-    if (to.meta.requiresAuth && !token && !isPublished) {
-        return next('/Login');  
+    
+    // Si la route nécessite une authentification et que l'utilisateur n'est pas connecté
+    if (to.meta.requiresAuth && !token) {
+      return next('/Login');
     }
-
+  
+    // Si l'utilisateur essaie d'accéder à la route "/Classement"
     if (to.name === "Classement") {
+      try {
+        // Récupérer les paramètres du concours
+        const paramsRes = await axios.get(import.meta.env.VITE_API_URL + '/api/contestParams');
+        const isPublished = paramsRes.data.isPublished;
+        
+        // Si le classement est publié, autoriser l'accès
         if (isPublished) {
-            return next(); 
+          return next(); // Permet d'accéder à la page Classement
+        } else {
+          return next('/'); // Rediriger vers la page d'accueil si le classement n'est pas publié
         }
-
-        if (!token) {
-            return next('/');
-        }
-
-        if (!(userRole === "Gérant" || (userRole === "Participant" && isPublished))) {
-            return next('/');
-        }
+      } catch (error) {
+        console.error("Erreur avant navigation :", error);
+        return next('/'); // En cas d'erreur, rediriger vers la page d'accueil
+      }
     }
-
-    if (to.meta.requiresRole && userRole !== to.meta.requiresRole) {
-        return next('/');
-    }
-
+  
+    // Continuer avec le reste des routes
     next();
-});
-
-
-
+  });
+  
+  
 
 export default router;

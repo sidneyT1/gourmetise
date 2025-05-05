@@ -65,22 +65,55 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
-const userRole = ref(localStorage.getItem('user_role'));
-const isPublished = ref(localStorage.getItem('isPublished') === 'true');
+const userRole = ref(null);
+const isPublished = ref(false);
 const dialogVisible = ref(false);
 
-const handleShowResults = () => {
-  if (isPublished.value || userRole.value === 'Gérant') {
-    router.push('/Classement'); 
-  } else {
-    dialogVisible.value = true; 
+const fetchIsPublished = async () => {
+  try {
+    const response = await axios.get(import.meta.env.VITE_API_URL + '/api/contestParams');
+    isPublished.value = response.data.isPublished === true;
+  } catch (error) {
+    console.error('Erreur isPublished:', error);
   }
 };
+
+const fetchUserRole = async () => {
+  try {
+    const token = localStorage.getItem('access_token');
+    if (!token) return;
+
+    const response = await axios.get(import.meta.env.VITE_API_URL + '/api/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    userRole.value = response.data.role;
+  } catch (error) {
+    console.error('Erreur récupération rôle utilisateur :', error);
+  }
+};
+
+const handleShowResults = async () => {
+  await Promise.all([fetchIsPublished(), fetchUserRole()]);
+  if (isPublished.value || userRole.value === 'Gérant') {
+    router.push('/Classement');
+  } else {
+    dialogVisible.value = true;
+  }
+};
+
+onMounted(() => {
+  fetchIsPublished();
+  fetchUserRole();
+});
 </script>
+
 
 <style scoped>
 .my-12 {

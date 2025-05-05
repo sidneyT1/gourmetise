@@ -18,26 +18,23 @@ use DateTime;
 class APIUserController extends AbstractController
 {
 
-    #[Route('/api/users', methods: ['POST'])]
-    public function createUser(
-        Request $request,
-        UserRepository $userRepository,
-        SerializerInterface $serializer
-    ): JsonResponse {
-        $data = $request->getContent();
-    
-        try {
-            $user = $serializer->deserialize($data, User::class, 'json');
-            $user->setCreatedAt(new \DateTime());
-    
-            $token = $userRepository->registerUser($user);
-    
-            return new JsonResponse(['token' => $token], Response::HTTP_CREATED);
-        } catch (\Exception $e) {
-            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+    #[Route('/api/user', name: 'api_user', methods: ['GET'])]
+    public function me(): JsonResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->json(['message' => 'Utilisateur non authentifié'], 401);
         }
+
+        return $this->json([
+            'id' => $user->getId(),
+            'mail' => $user->getMail(),
+            'role' => $user->getRole(),
+        ]);
     }
-    
+        
 
 
 
