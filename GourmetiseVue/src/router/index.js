@@ -59,7 +59,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('access_token');
-
+  
   if (to.meta.requiresAuth && !token) {
     return next('/Login');
   }
@@ -69,34 +69,32 @@ router.beforeEach(async (to, from, next) => {
       const paramsRes = await axios.get(import.meta.env.VITE_API_URL + '/api/contestParams');
       const isPublished = paramsRes.data.isPublished;
 
-      // Si le classement est publié, on autorise l'accès
-      if (isPublished) {
+      const profileRes = await axios.get(import.meta.env.VITE_API_URL + '/api/profile', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      const userRole = profileRes.data.role; 
+
+      if (userRole === 'Gérant') {
         return next();
       }
 
-      // Sinon, vérifier si l'utilisateur est Gérant
-      if (token) {
-        const userRes = await axios.get(import.meta.env.VITE_API_URL + '/api/profile', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (userRes.data.role === 'Gérant') {
-          return next(); // Gérant peut accéder même si le classement n’est pas publié
-        }
+   
+      if (isPublished) {
+        return next(); 
+      } else {
+        return next('/'); 
       }
-
-      return next('/'); // Redirection si aucune condition remplie
-
     } catch (error) {
       console.error("Erreur avant navigation :", error);
-      return next('/');
+      return next('/'); 
     }
   }
 
   next();
 });
 
-  
   
 
 export default router;
