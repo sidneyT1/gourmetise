@@ -2,6 +2,7 @@
   <div class="ranking-container">
     <h1 class="ranking-title">Classement du Concours</h1>
 
+    <!-- Affichage des 3 premiers participants (Podium) -->
     <div v-if="ranking && ranking.length > 0">
       <div v-if="userRole !== 'Gérant'" class="podium">
         <div class="podium-item gold">
@@ -20,7 +21,8 @@
           <div class="score">{{ formatScore(ranking[2]?.avg_score) }} points</div>
         </div>
       </div>
-      
+
+      <!-- Bouton pour voir son propre classement si l'utilisateur est un participant et connecté -->
       <router-link
         v-if="userRole === 'Participant' && isUserConnected"
         to="/personal-score"
@@ -29,10 +31,12 @@
         Voir mon classement
       </router-link>
 
+      <!-- Note pour le gérant -->
       <p v-if="userRole === 'Gérant'" class="admin-note">
         Classement complet réservé au gérant du concours
       </p>
 
+      <!-- Affichage complet du classement pour le gérant -->
       <table v-if="userRole === 'Gérant' && isUserConnected && ranking.length > 0" class="ranking-table">
         <thead>
           <tr>
@@ -50,11 +54,13 @@
         </tbody>
       </table>
 
+      <!-- Bouton de publication du classement pour le gérant -->
       <button v-if="userRole === 'Gérant' && isUserConnected && !contestParams.isPublished" @click="publishRanking" class="publish-btn">
         Publier le classement
       </button>
     </div>
 
+    <!-- Message d'erreur si aucun classement n'est disponible -->
     <p v-if="!ranking || ranking.length === 0" class="warning">
       {{ errorMessage }}
     </p>
@@ -73,7 +79,7 @@ export default {
       canPublish: false,
       errorMessage: "",
       contestParams: null,
-      userRole: null, 
+      userRole: null,
       isUserConnected: !!localStorage.getItem("access_token"),
     };
   },
@@ -94,15 +100,26 @@ export default {
 
     async loadRankingData() {
       try {
+        // Vérifier si le concours est publié avant d'afficher le classement
+        const paramsResponse = await axios.get(import.meta.env.VITE_API_URL + "/api/contestParams");
+
+        // Si l'utilisateur est "Gérant", ignorez l'état de publication
+        if (this.userRole !== 'Gérant' && !paramsResponse.data.isPublished) {
+          this.errorMessage = "Le classement n'a pas encore été publié.";
+          this.ranking = [];
+          return;
+        }
+
+        // Si le concours est publié ou si l'utilisateur est un "Gérant", récupérer les top 3 boulangeries
         const response = await axios.get(import.meta.env.VITE_API_URL + "/api/leaderboard");
 
         if (response.status === 200 && response.data.length > 0) {
-          this.ranking = response.data;
+          this.ranking = response.data.slice(0, 3); // Limiter à top 3
           this.errorMessage = "";
           this.launchConfetti();
         } else {
           this.ranking = [];
-          this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
+          this.errorMessage = "Aucune donnée disponible pour le classement.";
         }
       } catch (error) {
         console.error("Erreur lors du chargement du classement:", error);
@@ -111,7 +128,6 @@ export default {
         } else {
           this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
         }
-
         this.ranking = [];
       }
     },
@@ -160,6 +176,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 body {

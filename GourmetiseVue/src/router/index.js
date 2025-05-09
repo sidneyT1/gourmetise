@@ -59,7 +59,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('access_token');
-  
+
+  // Vérifie si la route nécessite une authentification
   if (to.meta.requiresAuth && !token) {
     return next('/Login');
   }
@@ -69,31 +70,39 @@ router.beforeEach(async (to, from, next) => {
       const paramsRes = await axios.get(import.meta.env.VITE_API_URL + '/api/contestParams');
       const isPublished = paramsRes.data.isPublished;
 
-      const profileRes = await axios.get(import.meta.env.VITE_API_URL + '/api/profile', {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      // Si le concours est publié ou si l'utilisateur est Gérant, on autorise l'accès
+      if (isPublished || token) {
+        const profileRes = token
+          ? await axios.get(import.meta.env.VITE_API_URL + '/api/profile', {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+          : null;
+        
+        const userRole = profileRes ? profileRes.data.role : null;
+
+        // Si le rôle de l'utilisateur est "Gérant", on lui permet l'accès même si le concours n'est pas publié
+        if (userRole === 'Gérant') {
+          return next();
         }
-      });
-      const userRole = profileRes.data.role; 
 
-      if (userRole === 'Gérant') {
+        // Si le concours n'est pas publié, on redirige les autres utilisateurs
+        if (!isPublished) {
+          return next('/');
+        }
+
         return next();
-      }
-
-   
-      if (isPublished) {
-        return next(); 
       } else {
-        return next('/'); 
+        return next('/'); // Sinon, on redirige vers la page d'accueil
       }
     } catch (error) {
       console.error("Erreur avant navigation :", error);
-      return next('/'); 
+      return next('/');
     }
   }
 
   next();
 });
+
 
   
 
