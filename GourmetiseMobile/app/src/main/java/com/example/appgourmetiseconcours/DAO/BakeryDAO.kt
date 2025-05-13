@@ -19,7 +19,7 @@ class BakeryDAO(private val context: Context) {
 
 
 
-    fun insertBakery(
+    fun upsertBakery(
         siren: String,
         name: String,
         street: String,
@@ -27,25 +27,54 @@ class BakeryDAO(private val context: Context) {
         city: String,
         phonenumber: String,
         contactname: String,
-        description: String?,
-        ticketNum: String?,
-        evaluationDate: String?
+        description: String?
     ) {
-        val values = ContentValues().apply {
-            put("siren", siren)
-            put("name", name)
-            put("street", street)
-            put("postcode", postcode)
-            put("city", city)
-            put("phonenumber", phonenumber)
-            put("contactname", contactname)
-            put("description", description)
-            put("ticketNum", ticketNum)
-            put("evaluationDate", evaluationDate)
+        val cursor = db.rawQuery("SELECT ticketNum, evaluationDate FROM bakery WHERE siren = ?", arrayOf(siren))
+
+        var existingTicketNum: String? = null
+        var existingEvalDate: String? = null
+
+        if (cursor.moveToFirst()) {
+            existingTicketNum = cursor.getString(cursor.getColumnIndex("ticketNum"))
+            existingEvalDate = cursor.getString(cursor.getColumnIndex("evaluationDate"))
+
+            // Update
+            val values = ContentValues().apply {
+                put("name", name)
+                put("street", street)
+                put("postcode", postcode)
+                put("city", city)
+                put("phonenumber", phonenumber)
+                put("contactname", contactname)
+                put("description", description)
+                put("ticketNum", existingTicketNum)
+                put("evaluationDate", existingEvalDate)
+            }
+
+            db.update("bakery", values, "siren = ?", arrayOf(siren))
+        } else {
+            // Insert
+            val values = ContentValues().apply {
+                put("siren", siren)
+                put("name", name)
+                put("street", street)
+                put("postcode", postcode)
+                put("city", city)
+                put("phonenumber", phonenumber)
+                put("contactname", contactname)
+                put("description", description)
+                put("ticketNum", null as String?)
+
+                put("evaluationDate", null as String?)
+
+            }
+
+            db.insert("bakery", null, values)
         }
 
-        db.insert("bakery", null, values)
+        cursor.close()
     }
+
 
 
 

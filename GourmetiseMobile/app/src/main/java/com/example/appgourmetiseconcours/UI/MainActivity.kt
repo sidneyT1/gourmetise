@@ -127,10 +127,10 @@ class MainActivity : ComponentActivity() {
                     flux?.let {
                         val fluxJson = JSONArray(it)
                         val bdd = BakeryDAO(this@MainActivity)
-                        bdd.clearAllBakeries()
+
                         for (i in 0 until fluxJson.length()) {
                             val jsonObject = fluxJson.getJSONObject(i)
-                            bdd.insertBakery(
+                            bdd.upsertBakery(
                                 jsonObject.getString("siren"),
                                 jsonObject.getString("name"),
                                 jsonObject.getString("street"),
@@ -138,10 +138,9 @@ class MainActivity : ComponentActivity() {
                                 jsonObject.getString("city"),
                                 jsonObject.getString("phonenumber"),
                                 jsonObject.getString("contactname"),
-                                jsonObject.optString("description", null),
-                                ticketNum = null,
-                                evaluationDate = ""
+                                jsonObject.optString("description", null)
                             )
+
 
                         }
                         showToast("Import Participants Réussi")
@@ -212,9 +211,6 @@ fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
                         modifier = Modifier.padding(vertical = 8.dp)
                     )
 
-
-
-
                     Text(
                         text = "🗳️ Période d'évaluation : \nDu ${dateFormatter.format(startEvalDate)} au ${dateFormatter.format(endEvalDate)}",
                         fontSize = 15.sp,
@@ -222,44 +218,43 @@ fun Accueil(VoirParticipants: () -> Unit, contestParams: ContestParams?) {
                         color = Color(0xFF37474F),
                         modifier = Modifier.padding(vertical = 8.dp)
                     )
-                }
 
-                Button(
-                    onClick = {
-                        val dateActuelle = Date()
-                        contestParams?.let {
-                            val startRegDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                .parse(it.startRegistration) ?: Date()
-                            val endRegDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                .parse(it.endRegistration) ?: Date()
-                            val startEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                .parse(it.startEvaluation) ?: Date()
-                            val endEvalDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-                                .parse(it.endEvaluation) ?: Date()
 
-                            if ((dateActuelle.before(startRegDate) || dateActuelle.after(endRegDate)) &&
-                                (dateActuelle.before(startEvalDate) || dateActuelle.after(endEvalDate))) {
-                                showAlert = true
+                    val currentDate = Date()
 
-                            } else {
+
+                    val isBeforeRegistrationPeriod = currentDate.before(startRegDate)
+
+
+                    if (isBeforeRegistrationPeriod) {
+                        showAlert = true
+                    }
+
+                    Button(
+                        onClick = {
+
+                            if (!isBeforeRegistrationPeriod) {
                                 VoirParticipants()
+                            } else {
+                                showAlert = true
                             }
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff2e00))
-                ) {
-                    Text("Voir les participants")
+                        },
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff2e00))
+                    ) {
+                        Text("Voir les participants")
+                    }
                 }
             }
         }
     )
 
+
     if (showAlert) {
         AlertDialog(
             onDismissRequest = { showAlert = false },
             title = { Text(text = "Attention") },
-            text = { Text(text = "La période d'inscription est terminée ou n'a pas encore commencé.") },
+            text = { Text(text = "La période d'inscription n'a pas encore commencé.") },
             confirmButton = {
                 Button(onClick = { showAlert = false }) {
                     Text("OK")
