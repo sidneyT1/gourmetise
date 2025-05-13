@@ -29,6 +29,7 @@
         "symfony/yaml": "7.0.*"
     },
     "require-dev": {
+        "phpunit/phpunit": "^11.5",
         "symfony/maker-bundle": "^1.61",
         "symfony/var-dumper": "7.0.*"
     },
