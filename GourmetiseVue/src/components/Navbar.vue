@@ -33,7 +33,7 @@
         Connexion
       </v-btn>
 
-      <v-btn v-if="isLoggedIn" @click="logout" color="red">
+      <v-btn v-if="isLoggedIn" @click="handleLogout" color="red">
         Déconnexion
       </v-btn>
     </v-row>
@@ -41,26 +41,27 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { isLoggedIn, logout } from '@/components/auth';
 
 const router = useRouter();
-
-const isLoggedIn = ref(localStorage.getItem('access_token') !== null);
-
-watch(() => localStorage.getItem('access_token'), (newValue) => {
-  isLoggedIn.value = newValue !== null;
-});
 
 const goToLogin = () => {
   router.push('/Login');
 };
 
-const logout = () => {
-  localStorage.removeItem('access_token');
+const handleLogout = () => {
+  logout();
   router.push('/Login');
 };
+
+// Met à jour isLoggedIn si le token change dans le localStorage
+watch(() => localStorage.getItem('access_token'), (newValue) => {
+  isLoggedIn.value = newValue !== null;
+});
 </script>
+
 
 <style scoped>
 a {

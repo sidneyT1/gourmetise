@@ -2,9 +2,9 @@
 import { ref } from "vue";
 import api from "@/api";
 import { useRouter } from "vue-router";
+import { login as loginWithToken } from '@/components/auth'; // ✅ renommé
 
 const router = useRouter();
-
 const email = ref("");
 const password = ref("");
 const errorMessage = ref("");
@@ -17,15 +17,15 @@ const login = async () => {
     });
 
     const token = response.data.token;
-    // Enregistrer uniquement le token dans le localStorage
-    localStorage.setItem("access_token", token);
+    loginWithToken(token); // ✅ on utilise le nom renommé
 
-    router.push("/");  // Rediriger vers la page d'accueil
+    router.push("/");
   } catch (error) {
     errorMessage.value = error.response?.data?.message || "Erreur lors de la connexion";
   }
 };
 </script>
+
 
 
 <template>
