@@ -99,38 +99,40 @@ export default {
     },
 
     async loadRankingData() {
-      try {
-        // Vérifier si le concours est publié avant d'afficher le classement
-        const paramsResponse = await axios.get(import.meta.env.VITE_API_URL + "/api/contestParams");
+  try {
+    const paramsResponse = await axios.get(import.meta.env.VITE_API_URL + "/api/contestParams");
 
-        // Si l'utilisateur est "Gérant", ignorez l'état de publication
-        if (this.userRole !== 'Gérant' && !paramsResponse.data.isPublished) {
-          this.errorMessage = "Le classement n'a pas encore été publié.";
-          this.ranking = [];
-          return;
-        }
+    if (this.userRole !== 'Gérant' && !paramsResponse.data.isPublished) {
+      this.errorMessage = "Le classement n'a pas encore été publié.";
+      this.ranking = [];
+      return;
+    }
 
-        // Si le concours est publié ou si l'utilisateur est un "Gérant", récupérer les top 3 boulangeries
-        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/leaderboard");
+    const response = await axios.get(import.meta.env.VITE_API_URL + "/api/leaderboard");
 
-        if (response.status === 200 && response.data.length > 0) {
-          this.ranking = response.data.slice(0, 3); // Limiter à top 3
-          this.errorMessage = "";
-          this.launchConfetti();
-        } else {
-          this.ranking = [];
-          this.errorMessage = "Aucune donnée disponible pour le classement.";
-        }
-      } catch (error) {
-        console.error("Erreur lors du chargement du classement:", error);
-        if (error.response && error.response.status === 400) {
-          this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
-        } else {
-          this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
-        }
-        this.ranking = [];
+    if (response.status === 200 && response.data.length > 0) {
+      if (this.userRole === 'Gérant') {
+        this.ranking = response.data; 
+      } else {
+        this.ranking = response.data.slice(0, 3);  
       }
-    },
+      this.errorMessage = "";
+      this.launchConfetti();
+    } else {
+      this.ranking = [];
+      this.errorMessage = "Aucune donnée disponible pour le classement.";
+    }
+  } catch (error) {
+    console.error("Erreur lors du chargement du classement:", error);
+    if (error.response && error.response.status === 400) {
+      this.errorMessage = "La période d'évaluation n'est pas encore terminée.";
+    } else {
+      this.errorMessage = "Une erreur est survenue lors de la récupération des résultats.";
+    }
+    this.ranking = [];
+  }
+},
+
 
     async loadContestParams() {
       try {
@@ -170,9 +172,9 @@ export default {
   },
 
   mounted() {
-    this.loadUserRole(); // Charger le rôle de l'utilisateur
-    this.loadContestParams();  // Charger les paramètres du concours
-    this.loadRankingData();  // Charger les résultats du classement
+    this.loadUserRole(); 
+    this.loadContestParams();  
+    this.loadRankingData(); 
   },
 };
 </script>
